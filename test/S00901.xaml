@@ -1,0 +1,35 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="StudyLinkZ.TEP.UI.CustomControls.S00901"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="490" d:DesignWidth="954">
+    <Grid VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="教科" Margin="10,0,0,0" Grid.Row="0" Name="lblCategory"></Label>
+        <ComboBox Grid.Column="0" Width="150px" Margin="100,0,0,0" HorizontalAlignment="Left" Name="cboCategory" SelectedValuePath="Content">
+            <ComboBoxItem Content="英語" Selector.IsSelected="True"></ComboBoxItem>
+        </ComboBox>
+        <Label Content="書籍" Margin="10,0,0,0" Grid.Row="2" Name="lblListBook"></Label>
+        <ListView Grid.Row="3" Margin="10,5,10,0" Name="lstBook" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" PreviewMouseWheel="LstBookPreviewMouseWheel">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ZSTAR 総合英語" Width="874" DisplayMemberBinding="{Binding name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
