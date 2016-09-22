@@ -7,15 +7,16 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#add-tab" role="tab" data-toggle="tab">Add</a></li>
     <li class="active"><a href="#edit-tab" role="tab" data-toggle="tab">Edit</a></li>
     <li><a href="#list-tab" role="tab" data-toggle="tab">List</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div class="tab-pane active" id="edit-tab">
+    @*<div class="tab-pane active" id="edit-tab">
         @using (Html.BeginForm("Index", "Product",
-            FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -35,41 +36,20 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.UnitPrice, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.UnitPrice, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.UnitBrief, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.UnitBrief, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(m => m.Image, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.HiddenFor(m => m.Image, new { @class = "form-control" })
                     <input name="uplImage" type="file" />
                 </div>
             </div>
-            
-            <div class="form-group">
-                @Html.LabelFor(m => m.ProductDate, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.ProductDate, new { @class = "form-control" })
-                </div>
-            </div>
-            
+
             <div class="form-group">
                 @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.DropDownList("CategoryId")
                 </div>
             </div>
-            
+
             <div class="form-group">
                 @Html.LabelFor(m => m.SupplierId, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
@@ -77,21 +57,7 @@
                     <input id="SupplierId-Text" />
                 </div>
             </div>
-            
-            <div class="form-group">
-                @Html.LabelFor(m => m.Quantity, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
-                </div>
-            </div>
-            
-            <div class="form-group">
-                @Html.LabelFor(m => m.Discount, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.Discount, new { @class = "form-control" })
-                </div>
-            </div>
-            
+
             <div class="form-group">
                 <label class="col-md-4 control-label">Features</label>
                 <div class="col-md-8">
@@ -102,24 +68,91 @@
                     </div>
                 </div>
             </div>
-                        
+
             <div class="form-group">
                 @Html.LabelFor(m => m.Views, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.TextBoxFor(m => m.Views, new { @class = "form-control" })
                 </div>
             </div>
-            
+
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows="3", cols="55" })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3", cols = "55" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-4 col-md-8">
-                   @* @if ( (bool)ViewData["Insert"])
+                    @* @if ( (bool)ViewData["Insert"])
+                        {
+                            <button onclick="form.action = '/Admin/Product/Insert'" class="btn btn-default">Insert</button>
+                        }
+                        @if ( (bool)ViewData["Update"])
+                        {
+                            <button onclick="form.action = '/Admin/Product/Update'" class="btn btn-default">Update</button>
+                        }
+                    <button data-access="@ViewData["Delete"]" onclick="form.action = '/Admin/Product/Update'" class="btn btn-default">Update</button>
+                    <button onclick="form.action = '/Admin/Product/Index'" class="btn btn-default">Reset</button>
+                </div>
+            </div>
+        }
+    </div>*@
+    <div class="tab-pane active" id="add-tab">
+        @using (Html.BeginForm("Index", "Product",
+                    FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Id, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Image, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.HiddenFor(m => m.Image, new { @class = "form-control" })
+                <input name="uplImage" type="file" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownList("CategoryId")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SupplierId, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownList("SupplierId")
+                <input id="SupplierId-Text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3", cols = "55" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                @* @if ( (bool)ViewData["Insert"])
                     {
                         <button onclick="form.action = '/Admin/Product/Insert'" class="btn btn-default">Insert</button>
                     }
@@ -127,12 +160,14 @@
                     {
                         <button onclick="form.action = '/Admin/Product/Update'" class="btn btn-default">Update</button>
                     }*@
-                    <button data-access="@ViewData["Delete"]" onclick="form.action = '/Admin/Product/Update'" class="btn btn-default">Update</button>
-                    <button onclick="form.action = '/Admin/Product/Index'" class="btn btn-default">Reset</button>
-                </div>
+                <button onclick="form.action = '/Admin/Product/Insert'" class="btn btn-default">Insert</button>
+                <button data-access="@ViewData["Delete"]" onclick="form.action = '/Admin/Product/Update'" class="btn btn-default">Update</button>
+                <button onclick="form.action = '/Admin/Product/Index'" class="btn btn-default">Reset</button>
             </div>
+        </div>
         }
     </div>
+
     <div class="tab-pane" id="list-tab">
         <div id="result"></div>
         <div>
@@ -146,10 +181,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

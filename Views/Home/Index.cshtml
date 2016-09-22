@@ -11,53 +11,6 @@
         <div data-src="/Content/img/banner/img-box2.jpg"></div>
     </div>
 </div><!--end home banner-->
-@foreach (var c in Model)
-{
-    var items = c.Products
-        .Where(p => p.CategoryId == 1014)
-        .ToList()
-        .Take(12);
-    <div class="nn-block-margin-top30px">
-        <div class="nn-cat-title">
-
-            <a href="/Product/Category?CategoryID=@c.Id"><h2>@c.Name</h2></a>
-
-        </div>
-        <div>
-            @foreach(var p in items)
-        {
-        <div class="col-md-3 col-sm-6 col-sx-12">
-            <div class="nn-product-box">
-
-                <a href="/chi-tiet/@p.Name.ToAscii().ToLower()_@p.Id">
-                    <img id="i@(p.Id)" class="img-responsive" alt="@p.Name" src="/Content/img/products/@p.Image" />
-                </a>
-                <div class="nn-product-box-descriptions">
-                    <h3 class="nn-product-box-name">
-                        <a href="/chi-tiet/@p.Name.ToAscii().ToLower()_@p.Id" title="@p.Name">@p.Name</a>
-                    </h3>
-                    <div class="nn-product-box-price ">
-                        <span class="">@p.UnitPrice</span>
-                    </div>
-                    <div class="nn-product-box-actions">
-                        <button type="button" title="Add to Cart" class="btn btn-default add-to-cart" data-id="@p.Id">
-                            <span>Add to Cart</span>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        }
-            <div><a class="pull-right alert-link" href="/Product/Category?CategoryID=@c.Id"><h6>View More...</h6></a></div>
-        </div>
-
-    </div>
-    <div class="clearfix"></div>
-
-}
-
-
 
 @section scripts{
     <script>

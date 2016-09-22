@@ -6,18 +6,17 @@ using System.Web.Mvc;
 
 namespace MultiShop.Controllers
 {
-    
     public class HomeController : Controller
     {
-        MultiShopDbContext db = new MultiShopDbContext();
+        private MultiShopDbContext db = new MultiShopDbContext();
+
         public ActionResult Index()
         {
-            var model = db.Categories
-                .Where(c => c.Products.Count >= 4)
-                .OrderBy(c => Guid.NewGuid()).ToList();
-                
-           
-            return View(model);
+            //var model = db.Categories
+            //    .Where(c => c.Products.Count >= 4)
+            //    .OrderBy(c => Guid.NewGuid()).ToList();
+
+            return View();
         }
 
         public ActionResult Search()
@@ -43,25 +42,24 @@ namespace MultiShop.Controllers
 
             return View();
         }
-        
+
         public ActionResult Category()
         {
             var model = db.Categories;
-            return PartialView("_Category",model);
+            return PartialView("_Category", model);
         }
 
         public ActionResult Special()
         {
-            var model = db.Products.Where(p=>p.Special==true).Take(5);
+            var model = db.Products.Where(p => p.Special == true).Take(5);
             return PartialView("_Special", model);
         }
+
         //Download source code tại Sharecode.vn
         public ActionResult Saleoff()
         {
-            var model = db.Products.Where(p => p.Discount>0).Take(1);
+            var model = db.Products.Where(p => p.Discount > 0).Take(1);
             return PartialView("_Saleoff", model);
         }
-
-        
     }
 }

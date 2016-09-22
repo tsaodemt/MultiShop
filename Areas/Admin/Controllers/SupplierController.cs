@@ -9,7 +9,7 @@ namespace MultiShop.Areas.Admin.Controllers
 {
     public class SupplierController : Controller
     {
-        MultiShopDbContext db = new MultiShopDbContext();
+        private MultiShopDbContext db = new MultiShopDbContext();
 
         public ActionResult Index()
         {
@@ -27,12 +27,12 @@ namespace MultiShop.Areas.Admin.Controllers
                 //    model.Logo = model.Id
                 //        + f.FileName.Substring(f.FileName.LastIndexOf("."));
                 //    f.SaveAs(Server.MapPath("~/images/suppliers/" + model.Logo));
-                     
+
                 //}
-                var from = Server.MapPath("/photos/"+model.Logo);
-                model.Logo = model.Id + model.Logo.Substring(model.Logo.LastIndexOf("."));
-                var to = Server.MapPath("/Content/img/suppliers/" + model.Logo);
-                System.IO.File.Move(from, to);
+                //var from = Server.MapPath("/photos/"+model.Logo);
+                //model.Logo = model.Id + model.Logo.Substring(model.Logo.LastIndexOf("."));
+                //var to = Server.MapPath("/Content/img/suppliers/" + model.Logo);
+                //System.IO.File.Move(from, to);
 
                 db.Suppliers.Add(model);
                 db.SaveChanges();
@@ -57,7 +57,6 @@ namespace MultiShop.Areas.Admin.Controllers
                     model.Logo = model.Id
                         + f.FileName.Substring(f.FileName.LastIndexOf("."));
                     f.SaveAs(Server.MapPath("/Content/img/suppliers/" + model.Logo));
-
                 }
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
