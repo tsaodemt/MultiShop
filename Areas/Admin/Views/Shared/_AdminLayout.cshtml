@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <div class="container">
@@ -31,7 +32,7 @@
             <hr />
             <div class="row">
                 <footer style="text-align:center">
-                    <p>&copy; @DateTime.Now.ToString("MMMM 2014") by MultiShop</p>
+                    <p>&copy; @DateTime.Now.ToString("MMMM YYYY") by MultiShop</p>
                 </footer>
             </div>
         </div>
@@ -39,17 +40,17 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <link href="~/CartEffect/jquery-ui.css" rel="stylesheet" />
-    <script src="~/CartEffect/jquery-ui.js"></script>
+    @*<link href="~/CartEffect/jquery-ui.css" rel="stylesheet" />
+        <script src="~/CartEffect/jquery-ui.js"></script>*@
     @RenderSection("scripts", required: false)
 
-    <script>
-        $(function () {
-            $("#search").autocomplete({
-                source: "/Home/Search",
-                minLength:2
-            });
-        })
-    </script>
+    @*<script>
+            $(function () {
+                $("#search").autocomplete({
+                    source: "/Home/Search",
+                    minLength: 2
+                });
+            })
+        </script>*@
 </body>
 </html>

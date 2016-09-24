@@ -227,6 +227,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ckeditor\build-config.js" />
+    <Content Include="Content\ckeditor\ckeditor.js" />
+    <Content Include="Content\ckeditor\config.js" />
+    <Content Include="Content\ckeditor\contents.css" />
+    <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -1150,6 +1155,10 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Fakes Include="Fakes\Antlr3.Runtime.fakes" />
+    <Content Include="Content\ckeditor\CHANGES.md" />
+    <Content Include="Content\ckeditor\LICENSE.md" />
+    <Content Include="Content\ckeditor\README.md" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\jeff.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Camera\camera.js" />
@@ -1217,6 +1226,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ckeditor\adapters\" />
+    <Folder Include="Content\ckeditor\lang\" />
+    <Folder Include="Content\ckeditor\plugins\" />
+    <Folder Include="Content\ckeditor\samples\" />
+    <Folder Include="Content\ckeditor\skins\" />
     <Folder Include="Content\img\photos\" />
   </ItemGroup>
   <ItemGroup>

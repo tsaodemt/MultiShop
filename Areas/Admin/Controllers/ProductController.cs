@@ -9,8 +9,8 @@ namespace MultiShop.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        int PageSize = 10;
-        MultiShopDbContext db = new MultiShopDbContext();
+        private int PageSize = 10;
+        private MultiShopDbContext db = new MultiShopDbContext();
 
         public ActionResult GetPage(int PageNo = 0)
         {
@@ -25,6 +25,7 @@ namespace MultiShop.Areas.Admin.Controllers
             ViewBag.Products = db.Products;
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             ViewBag.SupplierId = new SelectList(db.Suppliers, "Id", "Name");
+
             return View();
         }
 
@@ -34,25 +35,28 @@ namespace MultiShop.Areas.Admin.Controllers
             try
             {
                 var f = Request.Files["uplLogo"];
+                model.ProductDate = DateTime.Now;
                 if (f != null && f.ContentLength > 0)
                 {
                     model.Image = model.Id
                         + f.FileName.Substring(f.FileName.LastIndexOf("."));
                     f.SaveAs(Server.MapPath("/Content/img/products/" + model.Image));
-                     
                 }
                 db.Products.Add(model);
                 db.SaveChanges();
                 ModelState.AddModelError("", "Inserted");
             }
-            catch
+            catch (Exception e)
             {
+                var er = e.Message;
+                throw;
                 ModelState.AddModelError("", "Error");
             }
 
             ViewBag.Products = db.Products;
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", model.CategoryId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "Id", "Name", model.SupplierId);
+
             return View("Index", model);
         }
 
@@ -61,13 +65,13 @@ namespace MultiShop.Areas.Admin.Controllers
         {
             try
             {
+                model.ProductDate = DateTime.Now;
                 var f = Request.Files["uplLogo"];
                 if (f != null && f.ContentLength > 0)
                 {
                     model.Image = model.Id
                         + f.FileName.Substring(f.FileName.LastIndexOf("."));
                     f.SaveAs(Server.MapPath("/Content/img/products/" + model.Image));
-
                 }
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
@@ -81,6 +85,7 @@ namespace MultiShop.Areas.Admin.Controllers
             ViewBag.Products = db.Products;
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", model.CategoryId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "Id", "Name", model.SupplierId);
+
             return View("Index", model);
         }
 
@@ -107,24 +112,23 @@ namespace MultiShop.Areas.Admin.Controllers
             ViewBag.Products = db.Products;
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", model.CategoryId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "Id", "Name", model.SupplierId);
-            return View("Index", model);
+
+            return View("Edit", model);
         }
 
-//        public ActionResult Upload()
-//        {
-//            var file = Request.Files["nicImage"];
-//            var newName = Session.SessionID + "-" + DateTime.Now.Ticks + file.FileName.Substring(file.FileName.LastIndexOf("."));
-//            var path = Server.MapPath("~/NicImages/" + newName);
-//            file.SaveAs(path);
+        //        public ActionResult Upload()
+        //        {
+        //            var file = Request.Files["nicImage"];
+        //            var newName = Session.SessionID + "-" + DateTime.Now.Ticks + file.FileName.Substring(file.FileName.LastIndexOf("."));
+        //            var path = Server.MapPath("~/NicImages/" + newName);
+        //            file.SaveAs(path);
 
-//            var uri = "/NicImages/" + newName;
-//            var scripts = @"<script>
-//                top.nicUploadButton.statusCb({ 
-//                done:1, width:'300', url:'" + uri + "'});</script>";
+        //            var uri = "/NicImages/" + newName;
+        //            var scripts = @"<script>
+        //                top.nicUploadButton.statusCb({
+        //                done:1, width:'300', url:'" + uri + "'});</script>";
 
-//            return Contents(scripts);
-//        }
-
-        
-	}
+        //            return Contents(scripts);
+        //        }
+    }
 }
