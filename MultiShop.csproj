@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\EShopV20\Category.cs" />
     <Compile Include="Models\EShopV20\Customer.cs" />
     <Compile Include="Models\EShopV20\MultiShopDbContext.cs" />

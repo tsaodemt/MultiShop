@@ -45,7 +45,27 @@ namespace MultiShop.Controllers
 
         public ActionResult Category()
         {
-            var model = db.Categories;
+            var model = new List<CategoryViewModel>();
+            var parentCatelogies = db.Categories.Where(i => i.ParentId == 0).ToList();
+            var allCategories = db.Categories.ToList();
+            foreach (var parent in parentCatelogies)
+            {
+                model.Add(new CategoryViewModel
+                {
+                    Id = parent.Id,
+                    DisplayOrder = parent.DisplayOrder,
+                    Name = parent.Name,
+                    NameVN = parent.NameVN
+                });
+                foreach (var item in allCategories)
+                {
+                    if (item.ParentId != parent.Id) continue;
+                    var parent1 = parent;
+                    var categoryViewModel = model.Where(i => i.Id == parent1.Id).ToList().FirstOrDefault();
+                    categoryViewModel?.SubCategory.Add(item);
+                }
+            }
+
             return PartialView("_Category", model);
         }
 

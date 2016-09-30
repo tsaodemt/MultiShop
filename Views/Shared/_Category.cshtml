@@ -1,16 +1,21 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<CategoryViewModel>
 <div class="nn-block">
-    <div class="nn-megamenu-sidebar-title"><h2>Danh mục sản phẩm</h2></div>
-    @foreach (var c in Model)
-    {
-        <div class="nn-megamenu-sidebar">
-            <ul>
-                <li>
-                    <a href="/Product/Category?CategoryID=@c.Id">
-                        @c.Name
-                    </a>
-                </li>
-            </ul>
-        </div>
-    }
+    <div class="active">Danh mục sản phẩm</div>
+    <div class="nav nav-pills nav-stacked">
+        @foreach (var c in Model)
+        {
+            @c.Name
+            foreach (var i in c.SubCategory)
+            {
+                <ul>
+                    <li>
+                        <a href="/Product/Category?CategoryID=@i.Id">
+                            @i.Name
+                        </a>
+                    </li>
+                </ul>
+            }
+
+        }
+    </div>
 </div><!--end block category-->
