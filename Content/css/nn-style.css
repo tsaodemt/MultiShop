@@ -150,15 +150,24 @@ mega-dropdown a:hover{
     margin-bottom: 3px;
 }
 
-
+.nn-megamenu-sidebar-boder {
+    border: 1px solid #bfbfbf;
+}
 .nn-megamenu-sidebar-title {
-background-color: #7ccfc4;
-position: relative;
-padding-left:80px;
-padding-top:1px;
-height:60px;
-text-transform:uppercase;
-color:#fff;
+text-transform: uppercase;
+	font-weight:bolder;
+	font-size:12px;
+	font-family:Tahoma, Geneva, sans-serif;
+	
+	color:#ffffff;
+	border-bottom: 4px solid #0e71d6;
+	margin-bottom:10px;
+	background-color:#0e71d6;
+	padding-top:9px;
+	padding-bottom:5px;
+	padding-left:15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 
 }
 .nn-megamenu-sidebar-title h2{
@@ -177,6 +186,17 @@ font-size: 18px;
 color: #fff;
 }
 
+.nn-megamenu-sidebar-title .glyphicon {
+left: 0;
+position: absolute;
+width: 65px;
+height: 58px;
+line-height: 58px;
+text-align: center;
+border-right: 1px solid #fff;
+font-size: 18px;
+color: #fff;
+}
 .nn-megamenu-sidebar{
 	border-top:2px solid white;
 	padding:0;
@@ -279,9 +299,12 @@ color: #fff;
 	
 }
 .nn-block-product-sidebar-name{
-	font-size:12px;
+	font-size:14px;
 	font-weight:bold;
-	color:#7b7b7b;
+	color:#454242;
+    background: none repeat scroll 0 0 #E1DEDE;
+    padding: 5px;
+    margin-bottom: 7px;
 }
 .nn-block-product-sidebar-price{
 	color:#ed6f6f;
@@ -396,4 +419,10 @@ z-index:2
 
 .nn-block-title{
 	border-bottom:1px solid #ECECEC ;
+	}
+
+.nn-block-footer{
+	background-color:#0e71d6;
+    color: white;
+    padding: 20px;
 	}

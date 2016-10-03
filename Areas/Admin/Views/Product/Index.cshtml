@@ -15,7 +15,7 @@
 <div class="tab-content">
     <div class="tab-pane" id="add-tab">
         @using (Html.BeginForm("Index", "Product",
-                                    FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                            FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -53,7 +53,7 @@
                 @Html.LabelFor(m => m.SupplierId, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.DropDownList("SupplierId")
-                    <input id="SupplierId-Text" />
+                    @*<input id="SupplierId-Text" />*@
                 </div>
             </div>
 
@@ -135,5 +135,20 @@
             });
             $("#pageNo").html(pageNo + 1);
         }
+
+        $(function () {
+            $(":file").change(function () {
+                $.ajax({
+                    url: '/Supplier/Upload',
+                    data: new FormData($("form:eq(0)").get(0)),
+                    contentType: false,
+                    processData: false,
+                    type: "POST",
+                    success: function (response) {
+                        $("#Logo").val(response);
+                    }
+                });
+            });
+        })
     </script>
 }

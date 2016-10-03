@@ -116,19 +116,11 @@ namespace MultiShop.Areas.Admin.Controllers
             return View("Edit", model);
         }
 
-        //        public ActionResult Upload()
-        //        {
-        //            var file = Request.Files["nicImage"];
-        //            var newName = Session.SessionID + "-" + DateTime.Now.Ticks + file.FileName.Substring(file.FileName.LastIndexOf("."));
-        //            var path = Server.MapPath("~/NicImages/" + newName);
-        //            file.SaveAs(path);
-
-        //            var uri = "/NicImages/" + newName;
-        //            var scripts = @"<script>
-        //                top.nicUploadButton.statusCb({
-        //                done:1, width:'300', url:'" + uri + "'});</script>";
-
-        //            return Contents(scripts);
-        //        }
+        public ActionResult Upload()
+        {
+            var f = Request.Files["uplImage"];
+            f.SaveAs(Server.MapPath("/Content/img/photos/" + f.FileName));
+            return Content(f.FileName);
+        }
     }
 }

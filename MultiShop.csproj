@@ -243,6 +243,7 @@
     <Content Include="Content\img\1000.jpg" />
     <Content Include="Content\img\anifire.gif" />
     <Content Include="Content\img\banner-camera.jpg" />
+    <Content Include="Content\img\banner\banner.swf" />
     <Content Include="Content\img\banner\home-banner03.jpg" />
     <Content Include="Content\img\banner\img-box1.jpg" />
     <Content Include="Content\img\banner\img-box2.jpg" />
