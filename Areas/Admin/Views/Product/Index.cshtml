@@ -15,7 +15,7 @@
 <div class="tab-content">
     <div class="tab-pane" id="add-tab">
         @using (Html.BeginForm("Index", "Product",
-                                            FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                                                FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -38,7 +38,8 @@
                 @Html.LabelFor(m => m.Image, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.HiddenFor(m => m.Image, new { @class = "form-control" })
-                    <input name="uplImage" type="file" />
+                    <input type="file" id="FileUpload" multiple />
+                    <input type="button" value="Upload" id="Upload">
                 </div>
             </div>
 
@@ -87,6 +88,36 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("#Upload").click(function () {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("FileUpload").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("FileUpload").files[i];
+
+                formData.append("FileUpload", file);
+                $('#Image').val(file.name);
+                console.log(file);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Product/Upload',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    //alert('succes!!');
+                },
+                error: function (error) {
+                    //alert("errror");
+                }
+            });
+        });
+    });
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
@@ -136,19 +167,20 @@
             $("#pageNo").html(pageNo + 1);
         }
 
-        $(function () {
-            $(":file").change(function () {
-                $.ajax({
-                    url: '/Supplier/Upload',
-                    data: new FormData($("form:eq(0)").get(0)),
-                    contentType: false,
-                    processData: false,
-                    type: "POST",
-                    success: function (response) {
-                        $("#Logo").val(response);
-                    }
-                });
-            });
-        })
+        //$(function () {
+        //    $(":file").change(function () {
+        //        console.log(new FormData($("form:eq(0)").get(0)));
+        //        $.ajax({
+        //            url: '/Admin/Product/Upload',
+        //            data: new FormData($("form:eq(0)").get(0)),
+        //            contentType: false,
+        //            processData: false,
+        //            type: "POST",
+        //            success: function (response) {
+        //                $("#Logo").val(response);
+        //            }
+        //        });
+        //    });
+        //})
     </script>
 }

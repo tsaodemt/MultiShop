@@ -1227,7 +1227,7 @@
     <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Uploads\" />
     <Folder Include="Content\ckeditor\adapters\" />
     <Folder Include="Content\ckeditor\lang\" />
     <Folder Include="Content\ckeditor\plugins\" />

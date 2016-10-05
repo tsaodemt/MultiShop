@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -116,11 +117,20 @@ namespace MultiShop.Areas.Admin.Controllers
             return View("Edit", model);
         }
 
-        public ActionResult Upload()
+        public void Upload()
         {
-            var f = Request.Files["uplImage"];
-            f.SaveAs(Server.MapPath("/Content/img/photos/" + f.FileName));
-            return Content(f.FileName);
+            if (Request.Files.Count > 0)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+
+                    var fileName = Path.GetFileName(file.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
         }
     }
 }
