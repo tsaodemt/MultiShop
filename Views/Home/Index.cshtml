@@ -1,18 +1,29 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<Product>
 @{
     ViewBag.Title = "TRANG CHỦ";
 }
 
-<div class="nn-home-banner">
-    @*<img src="/Content/img/banner/home-banner03.jpg" class="img-responsive" />*@
+<div>
+    @foreach (var p in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-sx-12">
+            <div class="nn-product-box">
 
-    @*<embed src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">*@
-    @*<div class="camera_wrap" id="banner">
-            <div data-src="/Content/img/banner/home-banner03.jpg"></div>
-            <div data-src="/Content/img/banner/img-box3.jpg"></div>
-            <div data-src="/Content/img/banner/img-box2.jpg"></div>
-        </div>*@
-</div><!--end home banner-->
+                <a href="~/Product/Detail/@p.Id">
+                    <img id="i@(p.Id)" class="img-responsive" alt="@p.Name" src="~/Content/img/Uploads/@p.Image" style="height: 130px; border: 1px solid;" />
+                </a>
+                <div class="nn-product-box-descriptions">
+                    <a href="Product/Detail/@p.Id" title="@p.Name">
+                        @{
+                            var name = p.Name.Length > 14 ? p.Name.Substring(0, 13) + " ..." : p.Name;
+                        }
+                        @name
+                    </a>
+                </div>
+            </div>
+        </div>
+                            }
+</div>
 
 @section scripts{
     <script>

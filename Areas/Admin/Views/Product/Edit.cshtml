@@ -52,6 +52,14 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(m => m.SupplierId, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.DropDownList("SupplierId")
+                    @*<input id="SupplierId-Text" />*@
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
                     @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "10", cols = "55", @id = "test1" })

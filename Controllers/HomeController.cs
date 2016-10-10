@@ -12,11 +12,21 @@ namespace MultiShop.Controllers
 
         public ActionResult Index()
         {
-            //var model = db.Categories
-            //    .Where(c => c.Products.Count >= 4)
-            //    .OrderBy(c => Guid.NewGuid()).ToList();
+            var model = db.Products.ToList().Take(16);
+            ViewData["Home"] = true;
+            return View(model);
+        }
 
-            return View();
+        public ActionResult Introduce()
+        {
+            ViewData["Introduce"] = true;
+            return View("~/Views/Introduciton/Index.cshtml");
+        }
+
+        public ActionResult Service()
+        {
+            ViewData["Service"] = true;
+            return View("~/Views/Service/Index.cshtml");
         }
 
         public ActionResult Search()

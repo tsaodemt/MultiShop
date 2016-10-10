@@ -3,19 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Content/img/Others/favicon.ico" type="image/x-icon">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/camera")
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/nn-style.css" rel="stylesheet" />
 </head>
+@{
+    var isHomeActive = ViewData["Home"] != null ? "active" : "";
+    var isIntroduceActive = ViewData["Introduce"] != null ? "active" : "";
+    var isServiceActive = ViewData["Service"] != null ? "active" : "";
+}
 <body>
     @*<div class="nn-banner">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
+                </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,24 +36,24 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">TRANG CHỦ</a></li>
-                    <li><a href="#">GIỚI THIỆU</a></li>
+                    <li class="@isHomeActive"><a href="~/Home/">TRANG CHỦ</a></li>
+                    <li class="@isIntroduceActive"><a href="~/Home/Introduce/">GIỚI THIỆU</a></li>
                     <li><a href="#">SẢN PHẨM</a></li>
-                    <li><a href="#">DỊCH VỤ</a></li>
+                    <li class="@isServiceActive"><a href="~/Home/Service/">DỊCH VỤ</a></li>
                     <li><a href="#">TIN TỨC-TÀI LIỆU</a></li>
                     <li><a href="#">LIÊN HỆ</a></li>
                 </ul>
                 @*<ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>*@
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>*@
             </div>
         </div>
     </nav>
     @*<div class="row">
-        <div class="col-lg-12 text-center">
-            <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
-        </div>
-    </div>*@
+            <div class="col-lg-12 text-center">
+                <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
+            </div>
+        </div>*@
     <div class="container">
         <header class="nn-banner">
             <div class="row">
@@ -53,14 +61,14 @@
                     <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
                 </div>
             </div>
-                @*<div class="col-sm-3 col-md-3 nn-text-align-center">
+            @*<div class="col-sm-3 col-md-3 nn-text-align-center">
                     <a href="/"><img src="/Content/img/logo.png" class="img-responsive" /></a>
                     <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
                 </div>*@<!--end logo-->
-                @*<div class="col-md-8 col-sm-8">
-                @Html.Partial("_Search")
-            </div>*@<!--end search box-->
-</header>
+            @*<div class="col-md-8 col-sm-8">
+                    @Html.Partial("_Search")
+                </div>*@<!--end search box-->
+        </header>
 
         @*<div class="navbar navbar-default">
                 <div class="navbar-header">
@@ -84,17 +92,17 @@
             <div class="col-sm-8">
                 @RenderBody()
             </div>
-            <div class="col-sm-2 sidenav">
-                <div class="well">
-                    <p>ADS</p>
-                </div>
-                <div class="well">
-                    <p>ADS</p>
-                </div>
-            </div>
+            @*<div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                </div>*@
         </div>
         <div class="ma-footer-static">
-            @Html.Partial("_Footer");
+            @Html.Partial("_Footer")
         </div>
     </div>
 
@@ -103,14 +111,6 @@
     <link href="~/Content/css/jquery-ui.css" rel="stylesheet" />
     <script src="~/Content/js/jquery-ui.js"></script>
     @RenderSection("scripts", required: false)
-    <script>
-        $(function () {
-            //$("#search").autocomplete({
-            //    source: "/Home/Search",
-            //    minLength: 2
-            //});
-        })
-    </script>
 </body>
 </html>
 <noembed />

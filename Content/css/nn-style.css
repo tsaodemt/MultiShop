@@ -247,7 +247,7 @@ color: #fff;
 	margin-bottom:30px;
 	}
 .nn-product-box-descriptions{
-	padding:0 10px 10px 10px;
+	padding:10px 10px 10px 10px;
 	}
 .nn-product-box-name > a{
 	
@@ -426,3 +426,32 @@ z-index:2
     color: white;
     padding: 20px;
 	}
+
+.header-bar
+{
+	text-transform: uppercase;
+	font-weight:bolder;
+	font-size:12px;
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#ffffff;
+
+	background-color: #0e71d6;
+    margin-bottom: 20px;
+    height: 35px;
+    -moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+.header-info
+{
+	text-transform: uppercase;
+	font-weight:bolder;
+	font-size:12px;
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#ffffff;
+
+	background-color: #0e71d6;
+    margin-top: 20px;
+    height: 35px;
+}
