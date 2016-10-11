@@ -6,23 +6,24 @@ using System.Web.Mvc;
 
 namespace MultiShop.Controllers
 {
-    
     public class ProductController : Controller
     {
-        MultiShopDbContext db = new MultiShopDbContext();
+        private MultiShopDbContext db = new MultiShopDbContext();
+
         //
         // GET: /Product/
-        public ActionResult Category(int CategoryID=0)
+        public ActionResult Category(int CategoryID = 0)
         {
-            if(CategoryID!=0)
+            if (CategoryID != 0)
             {
-                ViewBag.TieuDe = db.Categories.SingleOrDefault(p => p.Name != null).Name;
+                ViewBag.TieuDe = db.Categories.Where(i => i.Id == CategoryID).ToList().FirstOrDefault().Name;
                 var model = db.Products.Where(p => p.CategoryId == CategoryID);
                 return View(model);
             }
-            
+
             return View();
         }
+
         //Download source code tại Sharecode.vn
         public ActionResult Search(String SupplierId = "", int CategoryId = 0, String Keywords = "")
         {
@@ -47,7 +48,7 @@ namespace MultiShop.Controllers
             return View(db.Products);
         }
 
-        public ActionResult Detail(int id,string SupplierID)
+        public ActionResult Detail(int id, string SupplierID)
         {
             var model = db.Products.Find(id);
 
@@ -77,5 +78,5 @@ namespace MultiShop.Controllers
                 .Where(p => keys.Contains(p.Id));
             return View(model);
         }
-	}
+    }
 }

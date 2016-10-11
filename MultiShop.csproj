@@ -367,6 +367,9 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Introduciton\Index.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Info\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />

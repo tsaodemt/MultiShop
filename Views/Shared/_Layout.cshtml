@@ -15,15 +15,11 @@
     var isHomeActive = ViewData["Home"] != null ? "active" : "";
     var isIntroduceActive = ViewData["Introduce"] != null ? "active" : "";
     var isServiceActive = ViewData["Service"] != null ? "active" : "";
+    var isProductActive = ViewData["Product"] != null ? "active" : "";
+    var isInfoActive = ViewData["Info"] != null ? "active" : "";
+    var isContactActive = ViewData["Contact"] != null ? "active" : "";
 }
 <body>
-    @*<div class="nn-banner">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
-                </div>
-            </div>
-        </div>*@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,32 +28,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @*<a class="navbar-brand" href="#">Logo</a>*@
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="collapse navbar-collapse js-navbar-collapse" id="myNavbar" style="padding-left: 185px;">
                 <ul class="nav navbar-nav">
                     <li class="@isHomeActive"><a href="~/Home/">TRANG CHỦ</a></li>
                     <li class="@isIntroduceActive"><a href="~/Home/Introduce/">GIỚI THIỆU</a></li>
-                    <li><a href="#">SẢN PHẨM</a></li>
+                    <li class="@isProductActive"><a href="~/Home/Product/">SẢN PHẨM</a></li>
                     <li class="@isServiceActive"><a href="~/Home/Service/">DỊCH VỤ</a></li>
-                    <li><a href="#">TIN TỨC-TÀI LIỆU</a></li>
-                    <li><a href="#">LIÊN HỆ</a></li>
+                    <li class="@isInfoActive"><a href="~/Home/Info/">TIN TỨC-TÀI LIỆU</a></li>
+                    <li class="@isContactActive"><a href="~/Home/Contact/">LIÊN HỆ</a></li>
                 </ul>
-                @*<ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>*@
             </div>
         </div>
     </nav>
-    @*<div class="row">
-            <div class="col-lg-12 text-center">
-                <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
-            </div>
-        </div>*@
     <div class="container">
         <header class="nn-banner">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-lg-offset-1">
                     <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
                 </div>
             </div>
@@ -86,7 +73,7 @@
                 </div>
             </div>*@<!--end navigation-->
         <div class="row content">
-            <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav col-lg-offset-1">
                 @Html.Action("Category", "Home")
             </div><!--end left-sidebar-->
             <div class="col-sm-8">

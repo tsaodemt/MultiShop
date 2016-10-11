@@ -127,7 +127,7 @@ namespace MultiShop.Areas.Admin.Controllers
 
                     var fileName = Path.GetFileName(file.FileName);
 
-                    var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/img/Uploads/"), fileName);
                     file.SaveAs(path);
                 }
             }

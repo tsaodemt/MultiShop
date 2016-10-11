@@ -17,10 +17,29 @@ namespace MultiShop.Controllers
             return View(model);
         }
 
+        public ActionResult Product()
+        {
+            var model = db.Products.ToList();
+            ViewData["Product"] = true;
+            return View("~/Views/Product/Index.cshtml", model);
+        }
+
         public ActionResult Introduce()
         {
             ViewData["Introduce"] = true;
             return View("~/Views/Introduciton/Index.cshtml");
+        }
+
+        public ActionResult Info()
+        {
+            ViewData["Info"] = true;
+            return View("~/Views/Info/Index.cshtml");
+        }
+
+        public ActionResult Contact()
+        {
+            ViewData["Contact"] = true;
+            return View("~/Views/Contact/Index.cshtml");
         }
 
         public ActionResult Service()
@@ -42,13 +61,6 @@ namespace MultiShop.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
