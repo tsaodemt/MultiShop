@@ -20,7 +20,7 @@
     var isContactActive = ViewData["Contact"] != null ? "active" : "";
 }
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse js-navbar-collapse" id="myNavbar" style="padding-left: 185px;">
+            <div class="collapse navbar-collapse js-navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="@isHomeActive"><a href="~/Home/">TRANG CHỦ</a></li>
                     <li class="@isIntroduceActive"><a href="~/Home/Introduce/">GIỚI THIỆU</a></li>
@@ -44,7 +44,7 @@
     <div class="container">
         <header class="nn-banner">
             <div class="row">
-                <div class="col-lg-12 col-lg-offset-1">
+                <div class="col-md-12 col-lg-offset-1" style="padding-top: 75px;">
                     <embed width="940" height="215" src="~/Content/img/banner/banner.swf" quality="high" type="application/x-shockwave-flash">
                 </div>
             </div>
@@ -73,10 +73,10 @@
                 </div>
             </div>*@<!--end navigation-->
         <div class="row content">
-            <div class="col-sm-2 sidenav col-lg-offset-1">
+            <div class="col-lg-2 col-lg-offset-1">
                 @Html.Action("Category", "Home")
             </div><!--end left-sidebar-->
-            <div class="col-sm-8">
+            <div class="col-lg-8">
                 @RenderBody()
             </div>
             @*<div class="col-sm-2 sidenav">
