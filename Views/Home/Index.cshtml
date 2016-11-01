@@ -6,14 +6,14 @@
 <div class="row">
     @foreach (var p in Model)
     {
-        <div class="col-md-3 col-xs-12" >
+        <div class="col-md-3 col-xs-12">
             <div class="nn-product-box">
 
                 <a href="~/Product/Detail/@p.Id">
                     <img id="i@(p.Id)" class="img-responsive" alt="@p.Name" src="~/Content/img/Uploads/@p.Image" style="height: 130px; border: 1px solid;" />
                 </a>
                 <div class="nn-product-box-descriptions">
-                    <a href="Product/Detail/@p.Id" title="@p.Name">
+                    <a href="~/Product/Detail/@p.Id" title="@p.Name">
                         @{
                             var name = p.Name.Length > 14 ? p.Name.Substring(0, 13) + " ..." : p.Name;
                         }

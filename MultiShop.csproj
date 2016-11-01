@@ -240,7 +240,9 @@
     <Content Include="Content\css\camera.css" />
     <Content Include="Content\css\nn-style.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\banner\banner.png" />
     <Content Include="Content\img\banner\banner.swf" />
+    <Content Include="Content\img\banner\nenmoi_01.png" />
     <Content Include="Content\img\Uploads\1.jpg" />
     <Content Include="Content\img\Uploads\1250.jpg" />
     <Content Include="Content\img\Uploads\chay.jpg" />
