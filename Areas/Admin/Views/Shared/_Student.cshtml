@@ -1,7 +1,7 @@
 ﻿<table class="table table-bordered">
     <tr>
         <th>Họ và tên</th>
-        <th>Ngày tháng năm sinh</th>
+        <th>Note</th>
         <th></th>
         <th></th>
     </tr>
@@ -9,7 +9,7 @@
     {
         <tr>
             <td>@c.FullName</td>
-            <td>@c.DateOfBirth</td>
+            <td>@Html.Raw(c.Note)</td>
             <td>
                 <a href="/Admin/Home/Delete/@c.StudentID">
                     Delete

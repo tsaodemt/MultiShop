@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -63,6 +64,31 @@ namespace MultiShop.Areas.Admin.Controllers
             catch
             {
                 ModelState.AddModelError("", "Error");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(string id)
+        {
+            var studentId = Guid.Parse(id);
+            var model = db.Students.Find(studentId);
+
+            return View("Edit", model);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult Update(Student model)
+        {
+            try
+            {
+                model.Gender = "M";
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch
+            {
+                //ModelState.AddModelError("", "Error");
             }
 
             return RedirectToAction("Index");

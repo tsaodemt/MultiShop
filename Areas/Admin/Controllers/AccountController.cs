@@ -40,7 +40,7 @@ namespace MultiShop.Areas.Admin.Controllers
                 await SignInAsync(user, false);
                 if (returnUrl == "")
                 {
-                    returnUrl = "/Admin/Master";
+                    returnUrl = "/Admin/Home";
                 }
                 return Redirect(returnUrl);
             }
@@ -65,5 +65,5 @@ namespace MultiShop.Areas.Admin.Controllers
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
-	}
+    }
 }
