@@ -1,30 +1,101 @@
-﻿@model IEnumerable<Product>
+﻿@using Kendo.Mvc.UI;
+@model IEnumerable<Product>
 @{
     ViewBag.Title = "TRANG CHỦ";
 }
 
-<div class="row">
-    @foreach (var p in Model)
-    {
-        <div class="col-md-3 col-xs-12">
-            <div class="nn-product-box">
+@*<div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3 col-xs-12">
+                <div class="nn-product-box">
 
-                <a href="~/Product/Detail/@p.Id">
-                    <img id="i@(p.Id)" class="img-responsive" alt="@p.Name" src="~/Content/img/Uploads/@p.Image" style="height: 130px; border: 1px solid;" />
-                </a>
-                <div class="nn-product-box-descriptions">
-                    <a href="~/Product/Detail/@p.Id" title="@p.Name">
-                        @{
-                            var name = p.Name.Length > 14 ? p.Name.Substring(0, 13) + " ..." : p.Name;
-                        }
-                        @name
+                    <a href="~/Product/Detail/@p.Id">
+                        <img id="i@(p.Id)" class="img-responsive" alt="@p.Name" src="~/Content/img/Uploads/@p.Image" style="height: 130px; border: 1px solid;" />
                     </a>
+                    <div class="nn-product-box-descriptions">
+                        <a href="~/Product/Detail/@p.Id" title="@p.Name">
+                            @{
+                                var name = p.Name.Length > 14 ? p.Name.Substring(0, 13) + " ..." : p.Name;
+                            }
+                            @name
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-                            }
-</div>
+                                }
+    </div>*@
+<div>
+    @(Html.Kendo().Grid<Product>()
+    .Name("Grid")
+    //.Events(events => events.DataBound("onLocalDataBound").Change("Grid_OnRowSelect").Edit("onEdit").SaveChanges("onSaveChanges"))
+    .Columns(columns =>
+    {
+    columns.Template(@<text></text>).ClientTemplate("<input type='checkbox' id='#= LeaveGradeListingId #' data-change='false' onclick='clickThis(this)' class='chkbx' />")
+            .HeaderTemplate("<input type='checkbox' id='masterCheckBox' onclick='masterClickThis(this)' /><input type='hidden'  name='gridSelection' id='gridSelection' value='' />").Width(30);
+        columns.Bound(c => c.Category).Title("ho ten");
+        //columns.Bound(c => c.LeaveGradeName).Title(Name + " " + Html.SF_Required(new { @style = "color:red;" }));
+        //columns.Bound(c => c.Inactive).Title(Inactive).ClientTemplate("#= Inactive ? 'Yes' : 'No' #");
+        //columns.Command(command =>
+        //{
+        //    if (viewMode == ViewMode.Edit.ToString())
+        //    {
+        //        command.Custom(Edit).Click("editInline");
+        //    }
+        //}).Title(Action);
+    })
+    .Scrollable(x => x.Enabled(true).Height("auto"))
+    .Groupable()
+    .Sortable(sorting => sorting.SortMode(GridSortMode.MultipleColumn))
+    .Filterable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
+    .Resizable(resize => resize.Columns(true))
+    //.Editable(ed => ed.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(false))
+    .ColumnMenu()
+    //.ToolBar(toolbar =>
+    //{
+    //    //**************************************************
+    //    if (viewMode == ViewMode.Edit.ToString())
+    //    {
+    //        toolbar.Custom().Text("<span class='k-icon k-i-close'></span>" + Delete).HtmlAttributes(new { onclick = "deleteSelection(event,'guidlist','LeaveGradeListingId','/LeaveGrade/LeaveGradeDestroyBatch', 'divMessage')" });
+    //        //toolbar.Save().SaveText(Save).CancelText(Cancel);
+    //    }
+    //    //**************************************************
+    //})
+    .Navigatable()
+    .Reorderable(reorder => reorder.Columns(true))
+    .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(true)
+        .ServerOperation(false) //True: Lazy Loading, False: SnapShot Loading
+        .PageSize(20)
+    .Model(model =>
+    {
+        model.Id(u => u.CategoryId);
 
+        model.Field(x => x.Category).DefaultValue(Guid.Empty);
+        //model.Field(x => x.CompanyId).DefaultValue(MySession.Current.CompanyId);
+        ////**************************************************
+        //if (viewMode == ViewMode.Detail.ToString())
+        //{
+        //    model.Field(p => p.LeaveGradeCode).Editable(true);
+        //    model.Field(p => p.LeaveGradeName).Editable(true);
+        //    model.Field(p => p.Inactive).Editable(true);
+        //}
+        //**************************************************
+    })
+
+    //.Read(read => read.Action("LeaveGradeReadBatch", "LeaveGrade", new { generalMasterCodeSearchViewModel = Json.Encode(GeneralMasterCodeSearchViewModel) }))
+    //.Update(update => update.Action("LeaveGradeUpdateBatch", "LeaveGrade").Data("sendAntiForgery"))
+    //.Create(create => create.Action("LeaveGradeCreateBatch", "LeaveGrade").Data("sendAntiForgery"))
+    //.Events(events => events.Error("onError"))
+    )
+    )
+</div>
 @section scripts{
     <script>
         $(function () {

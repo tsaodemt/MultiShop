@@ -10,7 +10,7 @@ namespace MultiShop
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/js/jquery-ui.js"));
+                        "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -29,16 +29,16 @@ namespace MultiShop
                       "~/Content/css/nn-style.css",
                       "~/Content/css/jquery-ui.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/camera").Include(
-                      "~/Scripts/camera.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/camera").Include(
+            //          "~/Scripts/camera.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                        "~/Scripts/kendo/kendo.all.min.js",
-                        "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+            //            "~/Scripts/kendo/kendo.all.min.js",
+            //            "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/kendo/css_kendo").Include(
-                        "~/Content/kendo/kendo.common-bootstrap.min.css",
-                        "~/Content/kendo/kendo.bootstrap.min.css"));
+            //bundles.Add(new StyleBundle("~/Content/kendo/css_kendo").Include(
+            //            "~/Content/kendo/kendo.common-bootstrap.min.css",
+            //            "~/Content/kendo/kendo.bootstrap.min.css"));
         }
     }
 }

@@ -1,7 +1,131 @@
-﻿
+﻿@model Student
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý học viên";
 }
 
-<h2>Index</h2>
+<h2>Quản lý học viên</h2>
 
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#list-tab" role="tab" data-toggle="tab">List</a></li>
+    <li><a href="#add-tab" role="tab" data-toggle="tab">Add</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane" id="add-tab">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="form-group">
+            <label for="FullName" class="col-md-4 control-label">Họ và tên:</label>
+            <div class="col-md-3">
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <label for="Gender" class="col-md-4 control-label">Giới tính:</label>
+                <div class="col-md-1">
+                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <label for="DateOfBirth" class="col-md-4 control-label">Ngày tháng năm sinh:</label>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="StudentCode" class="col-md-4 control-label">Mã khóa học:</label>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.StudentCode, new { @class = "form-control" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(m => m.Note, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control", rows = "10", cols = "55" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <button onclick="form.action = '/Admin/Home/Add'" class="btn btn-default">Insert</button>
+                @*<button class="btn btn-default reset">Reset</button>*@
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="tab-pane active" id="list-tab">
+        <div id="result"></div>
+        <div>
+            <ul class="pager">
+                <li><a href="pageNo=0">First</a></li>
+                <li><a href="pageNo-=1">Prev</a></li>
+                <li><span id="pageNo"></span>/<span>@ViewBag.PageCount</span></li>
+                <li><a href="pageNo+=1">Next</a></li>
+                <li><a href="pageNo=pageCount-1">Last</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                fnLoadPage();
+                $("#DateOfBirth").datepicker();
+                //CKEDITOR.replace("Note");
+
+                //$('.reset').on('click', function () {
+                //    $(this).closest('form').find("input[type=text]").val("");
+
+                //    $("form").submit(function (event) {
+                //        event.preventDefault();
+                //    });
+                //})
+            });
+        })
+    </script>
+
+    <script>
+        $(function () {
+            pageNo = 0;
+            pageCount = @ViewBag.PageCount
+
+            fnLoadPage();
+
+            $("ul.pager a").click(function () {
+                eval($(this).attr("href"));
+                fnLoadPage();
+                return false;
+            });
+        });
+
+        function fnLoadPage() {
+            if (pageNo < 0) {
+                pageNo = pageCount - 1;
+            }
+            if (pageNo >= pageCount) {
+                pageNo = 0;
+            }
+            $.ajax({
+                url: "/Admin/Home/GetPage",
+                data: { pageNo: pageNo },
+                success: function (response) {
+                    $("#result").html(response);
+                }
+            });
+            $("#pageNo").html(pageNo + 1);
+        }
+
+    </script>
+}

@@ -1,0 +1,25 @@
+﻿<table class="table table-bordered">
+    <tr>
+        <th>Họ và tên</th>
+        <th>Ngày tháng năm sinh</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (Student c in ViewBag.Students)
+    {
+        <tr>
+            <td>@c.FullName</td>
+            <td>@c.DateOfBirth</td>
+            <td>
+                <a href="/Admin/Home/Delete/@c.StudentID">
+                    Delete
+                </a>
+            </td>
+            <td>
+                <a href="/Admin/Home/Edit/@c.StudentID">
+                    Edit
+                </a>
+            </td>
+        </tr>
+    }
+</table>

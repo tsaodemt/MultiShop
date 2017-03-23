@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/css")
     <script src="~/Content/ckeditor/ckeditor.js"></script>
-    <script src="~/Content/js/jquery-1.10.2.min.js"></script>
-    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/css/nn-style.css" rel="stylesheet" />
+    @*<link href="~/Content/kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />*@
+    @*@Scripts.Render("~/bundles/kendo")*@
 </head>
 <body>
     <div class="container">
@@ -43,8 +43,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*<link href="~/CartEffect/jquery-ui.css" rel="stylesheet" />
-        <script src="~/CartEffect/jquery-ui.js"></script>*@
+
     @RenderSection("scripts", required: false)
 
     @*<script>
