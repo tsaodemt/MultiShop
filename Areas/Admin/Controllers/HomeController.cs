@@ -21,7 +21,7 @@ namespace MultiShop.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.PageCount = Math.Ceiling(1.0 * db.Products.ToList().Count / PageSize);
+            ViewBag.PageCount = Math.Ceiling(1.0 * db.Students.ToList().Count / PageSize);
             ViewBag.Students = db.Students;
 
             return View();
