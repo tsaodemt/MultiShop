@@ -20,7 +20,8 @@
             {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-
+            <br />
+            <br />
             <div class="form-group">
                 <label for="FullName" class="col-md-2 control-label">Họ và tên:</label>
                 <div class="col-md-3">
@@ -105,6 +106,7 @@
         //})
         $(function () {
             $(document).ready(function () {
+                $("#DateOfBirth").datepicker();
                 $("#NoteDate").datepicker();
                 CKEDITOR.replace("Note");
             });
