@@ -1,18 +1,31 @@
 ﻿<table class="table table-bordered">
     <tr>
-        <th>Họ tên</th>
-        <th>Ngày tháng năm sinh</th>
-        <th>Note</th>
-        <th></th>
-        <th></th>
+        <th class="text-center">Họ tên</th>
+        <th class="text-center">Ngày tháng năm sinh</th>
+        <th class="text-center">Quê quán</th>
+        <th class="text-center">Passport</th>
+        <th class="text-center">Nhập học</th>
+        <th class="text-center">Trúng tuyển</th>
+        <th class="text-center">Nghiệp đoàn</th>
+        <th class="text-center">Công ty tiếp nhận</th>
+        <th class="text-center">Dự kiến xuất cảnh</th>
+        @*<th></th>
+        <th></th>*@
     </tr>
     @foreach (Student c in ViewBag.Students)
     {
         <tr>
             <td>@c.FullName</td>
-            <td>@c.NoteDate</td>
-            <td>@Html.Raw(c.Note)</td>
-            <td>
+            <td class="text-right">@c.DateOfBirth.ToShortDateString()</td>
+            <td>@c.Hometown</td>
+            <td>@c.Passport</td>
+            <td class="text-right">@c.JoinDate.ToShortDateString()</td>
+            <td class="text-right">@c.PassDate.ToShortDateString()</td>
+            <td>@c.Syndication</td>
+            <td>@c.ReceivingCompany</td>
+            <td class="text-right">@c.ExitDate.ToShortDateString()</td>
+            @*<td>@Html.Raw(c.Hometown)</td>*@
+            @*<td>
                 <a href="/Admin/Home/Delete/@c.StudentID">
                     Delete
                 </a>
@@ -21,7 +34,7 @@
                 <a href="/Admin/Home/Edit/@c.StudentID">
                     Edit
                 </a>
-            </td>
+            </td>*@
         </tr>
     }
 </table>
