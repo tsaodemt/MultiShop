@@ -27,26 +27,15 @@ namespace MultiShop.Areas.Admin.Controllers
             return View();
         }
 
-        [ValidateInput(false)]
+        //[ValidateInput(false)]
         public ActionResult Add(Student model)
         {
-            try
-            {
-                model.StudentID = Guid.NewGuid();
-                model.StudentCode = "K2017";
-                model.Gender = "M";
-                //model.DateOfBirth = DateTime.Now;
-                model.NoteDate = DateTime.Now;
+            model.StudentID = Guid.NewGuid();
+            model.Gender = "M";
+            model.NoteDate = DateTime.Now;
 
-                db.Students.Add(model);
-                db.SaveChanges();
-                //ModelState.AddModelError("", "Inserted");
-            }
-            catch (Exception e)
-            {
-                var er = e.Message;
-                throw;
-            }
+            db.Students.Add(model);
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
