@@ -6,6 +6,7 @@ public partial class Student
 {
     public Guid StudentID { get; set; }
 
+    [Required]
     public string FullName { get; set; }
 
     public string Gender { get; set; }

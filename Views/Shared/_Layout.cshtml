@@ -7,7 +7,7 @@
     <title>@ViewBag.Title</title>
 
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/camera")
+    @*@Scripts.Render("~/bundles/camera")*@
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/nn-style.css" rel="stylesheet" />
 </head>
@@ -19,7 +19,7 @@
     var isInfoActive = ViewData["Info"] != null ? "active" : "";
     var isContactActive = ViewData["Contact"] != null ? "active" : "";
 }
-<body data-twttr-rendered="true"  style="background: url('../../Content/img/banner/nenmoi_01.png') no-repeat top center;">
+<body data-twttr-rendered="true" style="background: url('../../Content/img/banner/nenmoi_01.png') no-repeat top center;">
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="navigation">
             <div class="navbar-header">
@@ -33,17 +33,17 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="@isHomeActive"><a href="~/Admin/account/login/">TRANG CHỦ</a></li>
+                    <li class="@isServiceActive"><a href="~/Admin/account/login/">LOG IN</a></li>
                     @*<li class="@isIntroduceActive"><a href="~/Home/Introduce/">GIỚI THIỆU</a></li>
-                    <li class="@isProductActive"><a href="~/Home/Product/">SẢN PHẨM</a></li>
-                    <li class="@isServiceActive"><a href="~/Home/Service/">DỊCH VỤ</a></li>
-                    <li class="@isInfoActive"><a href="~/Home/Info/">TIN TỨC-TÀI LIỆU</a></li>
-                    <li class="@isContactActive"><a href="~/Home/Contact/">LIÊN HỆ</a></li>*@
+                        <li class="@isProductActive"><a href="~/Home/Product/">SẢN PHẨM</a></li>
+                        <li class="@isServiceActive"><a href="~/Home/Service/">DỊCH VỤ</a></li>
+                        <li class="@isInfoActive"><a href="~/Home/Info/">TIN TỨC-TÀI LIỆU</a></li>
+                        <li class="@isContactActive"><a href="~/Home/Contact/">LIÊN HỆ</a></li>*@
                 </ul>
             </div>
         </nav>
     </header>
-    <div class="container"  >
-        
+    <div class="container">
     </div>
 
     @Scripts.Render("~/bundles/jquery")
