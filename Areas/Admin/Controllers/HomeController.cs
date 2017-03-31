@@ -40,6 +40,13 @@ namespace MultiShop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddDetail(string id)
+        {
+            var model = new StudentDetail();
+
+            return View("AddDetail", model);
+        }
+
         public ActionResult Delete(string id)
         {
             try
@@ -61,7 +68,11 @@ namespace MultiShop.Areas.Admin.Controllers
         public ActionResult Edit(string id)
         {
             var studentId = Guid.Parse(id);
-            var model = db.Students.Find(studentId);
+            var student = db.Students.Find(studentId);
+            var model = new ListStudentDetail();
+            model.Name = student.FullName;
+            model.StudentID = studentId;
+            model.Details = new List<StudentDetail>();
 
             return View("Edit", model);
         }

@@ -16,4 +16,5 @@ public partial class MultiShopDbContext : DbContext
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
     public virtual DbSet<Student> Students { get; set; }
+    public virtual DbSet<StudentDetail> StudentDetails { get; set; }
 }

@@ -224,6 +224,8 @@
     <Compile Include="Models\EShopV20\MultiShopDbContext.cs" />
     <Compile Include="Models\EShopV20\Order.cs" />
     <Compile Include="Models\EShopV20\OrderDetail.cs" />
+    <Compile Include="Models\EShopV20\ListStudentDetail.cs" />
+    <Compile Include="Models\EShopV20\StudentDetail.cs" />
     <Compile Include="Models\EShopV20\Student.cs" />
     <Compile Include="Models\EShopV20\Product.cs" />
     <Compile Include="Models\EShopV20\Supplier.cs" />
@@ -313,6 +315,7 @@
     <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Student.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\AddDetail.cshtml" />
     <None Include="Properties\PublishProfiles\jeff.pubxml" />
     <None Include="Properties\PublishProfiles\new.pubxml" />
     <Content Include="Scripts\Camera\camera.js" />
