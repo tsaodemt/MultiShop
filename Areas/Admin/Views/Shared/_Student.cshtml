@@ -9,18 +9,19 @@
         <th class="text-center">Nghiệp đoàn</th>
         <th class="text-center">Công ty tiếp nhận</th>
         <th class="text-center">Dự kiến xuất cảnh</th>
-        @*<th></th>
-            <th></th>*@
+        <th>Status</th>
+        <th></th>
+        <th></th>
     </tr>
     @foreach (Student c in ViewBag.Students)
     {
         <tr>
-            @*<td>@c.FullName</td>*@
-            <td>
+            <td>@c.FullName</td>
+            @*<td>
                 <a href="/Admin/Home/Edit/@c.StudentID">
                     @c.FullName
                 </a>
-            </td>
+            </td>*@
             <td class="text-right">@c.DateOfBirth.ToShortDateString()</td>
             <td>@c.Hometown</td>
             <td>@c.Passport</td>
@@ -29,17 +30,23 @@
             <td>@c.Syndication</td>
             <td>@c.ReceivingCompany</td>
             <td class="text-right">@c.ExitDate.ToShortDateString()</td>
+            <td>
+                @if (c.Status)
+                { <label>Japan</label> }
+                else
+                { <label>Việt Nam</label>}
+            </td>
             @*<td>@Html.Raw(c.Hometown)</td>*@
-            @*<td>
-                    <a href="/Admin/Home/Delete/@c.StudentID">
-                        Delete
-                    </a>
-                </td>
-                <td>
-                    <a href="/Admin/Home/Edit/@c.StudentID">
-                        Edit
-                    </a>
-                </td>*@
+            <td>
+                <a href="/Admin/Home/Delete/@c.StudentID">
+                    Delete
+                </a>
+            </td>
+            <td>
+                <a href="/Admin/Home/Edit/@c.StudentID">
+                    Edit
+                </a>
+            </td>
         </tr>
     }
 </table>

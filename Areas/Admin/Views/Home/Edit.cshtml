@@ -1,4 +1,4 @@
-﻿@model ListStudentDetail
+﻿@model Student
 @{
     ViewBag.Title = "Quản lý học viên";
     var linkAdd = "/Admin/Home/AddDetail/" + Model.StudentID.ToString();
@@ -23,72 +23,89 @@
             @Html.ValidationSummary()
             <br />
             <br />
+
             <div class="form-group">
-                @*<label for="FullName" class="col-md-2 control-label">Họ và tên:</label>*@
-                <div class="row">
-                    <div class="col-md-4 col-lg-offset-1">
-                        @*@Html.LabelFor(m => m.Name, new { @class = "form-control" })*@
-                        <label for="FullName" class="col-md-6 control-label">@Model.Name</label>
-                        @*<button onclick="form.action = '/Admin/Home/Update'" class="btn btn-default">Add</button>*@
-                    </div>
-                    <div class="col-md-3">
-                        @*@Html.LabelFor(m => m.Name, new { @class = "form-control" })*@
-                        <button onclick="form.action = @linkAdd" class="btn btn-default">Add</button>
-                    </div>
+                <label for="FullName" class="col-md-2 control-label">Họ và tên:</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
                 </div>
-                @*<div class="col-md-3">
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                    </div>*@
             </div>
 
-            @*<div class="form-group">
-                    <label for="Gender" class="col-md-4 control-label">Giới tính:</label>
-                    <div class="col-md-1">
-                        @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Ngày tháng năm sinh:</label>
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    <label for="StudentCode" class="col-md-2 control-label">Mã khóa học:</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.StudentCode, new { @class = "form-control" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Ngày:</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.NoteDate, new { @class = "form-control" })
-                    </div>
+            <div class="form-group">
+                <label for="DateOfBirth" class="col-md-2 control-label">Ngày tháng năm sinh:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Note, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-8">
-                        @Html.TextAreaFor(m => m.Note, new { @class = "form-control", rows = "10", cols = "55" })
-                    </div>
+            <div class="form-group">
+                <label for="Hometown" class="col-md-2 control-label">Quê quán:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Hometown, new { @class = "form-control" })
                 </div>
+            </div>
 
-                <div class="form-group hidden">
-                    <div class="col-md-8 hidden">
-                        @Html.TextAreaFor(m => m.StudentID, new { @class = "form-control", rows = "10", cols = "55" })
-                    </div>
-                </div>*@
+            <div class="form-group">
+                <label for="Passport" class="col-md-2 control-label">Passport:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Passport, new { @class = "form-control" })
+                </div>
+            </div>
 
-            @*<div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+                <label for="PassDate" class="col-md-2 control-label">Nhập học:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.JoinDate, new { @class = "form-control" })
+                </div>
+            </div>
 
-                        <button onclick="form.action = '/Admin/Home/Update'" class="btn btn-default">Update</button>
-                        <button onclick="form.action = '/Admin/Home/Index'" class="btn btn-info">Back</button>
-                    </div>
-                </div>*@
+            <div class="form-group">
+                <label for="PassDate" class="col-md-2 control-label">Trúng tuyển:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.PassDate, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="PassDate" class="col-md-2 control-label">Nghiệp đoàn:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Syndication, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ReceivingCompany" class="col-md-2 control-label">Công ty tiếp nhận:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.ReceivingCompany, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ExitDate" class="col-md-2 control-label">Dự kiến xuất cảnh:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.ExitDate, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Gender" class="col-md-2 control-label">Status:</label>
+                <div class="col-md-2">
+                    <label>
+                        @Html.CheckBoxFor(m => m.Status, new { @class = "form-control" }) Japan
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+
+                    <button onclick="form.action = '/Admin/Home/Update'" class="btn btn-default">Update</button>
+                    <button onclick="form.action = '/Admin/Home/Index'" class="btn btn-info">Back</button>
+                </div>
+            </div>
         }
     </div>
 

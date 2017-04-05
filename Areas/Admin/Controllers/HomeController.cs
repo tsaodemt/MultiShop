@@ -68,6 +68,14 @@ namespace MultiShop.Areas.Admin.Controllers
         public ActionResult Edit(string id)
         {
             var studentId = Guid.Parse(id);
+            var model = db.Students.Find(studentId);
+
+            return View("Edit", model);
+        }
+
+        public ActionResult EditDetail(string id)
+        {
+            var studentId = Guid.Parse(id);
             var student = db.Students.Find(studentId);
             var model = new ListStudentDetail();
             model.Name = student.FullName;
@@ -77,7 +85,7 @@ namespace MultiShop.Areas.Admin.Controllers
             return View("Edit", model);
         }
 
-        [ValidateInput(false)]
+        //[ValidateInput(false)]
         public ActionResult Update(Student model)
         {
             try

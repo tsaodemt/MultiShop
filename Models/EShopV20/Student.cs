@@ -23,4 +23,5 @@ public partial class Student
     public string Syndication { get; set; }
     public string ReceivingCompany { get; set; }
     public DateTime ExitDate { get; set; }
+    public bool Status { get; set; }
 }

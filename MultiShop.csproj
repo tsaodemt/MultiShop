@@ -316,6 +316,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Student.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Home\AddDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\EditDetail.cshtml" />
     <None Include="Properties\PublishProfiles\jeff.pubxml" />
     <None Include="Properties\PublishProfiles\new.pubxml" />
     <Content Include="Scripts\Camera\camera.js" />
