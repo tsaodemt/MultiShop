@@ -31,7 +31,7 @@ namespace MultiShop.Areas.Admin.Controllers
         public ActionResult Add(Student model)
         {
             model.StudentID = Guid.NewGuid();
-            model.Gender = "M";
+            //model.Gender = "M";
             model.NoteDate = DateTime.Now;
 
             db.Students.Add(model);
@@ -90,7 +90,7 @@ namespace MultiShop.Areas.Admin.Controllers
         {
             try
             {
-                model.Gender = "M";
+                //model.Gender = "M";
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
             }

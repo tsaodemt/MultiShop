@@ -53,6 +53,13 @@
             </div>
 
             <div class="form-group">
+                <label for="Gender" class="col-md-2 control-label">Nhóm máu:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="PassDate" class="col-md-2 control-label">Nhập học:</label>
                 <div class="col-md-2">
                     @Html.TextBoxFor(m => m.JoinDate, new { @class = "form-control" })

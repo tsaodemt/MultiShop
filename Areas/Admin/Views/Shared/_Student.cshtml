@@ -4,6 +4,7 @@
         <th class="text-center">Ngày tháng năm sinh</th>
         <th class="text-center">Quê quán</th>
         <th class="text-center">Passport</th>
+        <th class="text-center">Nhóm máu</th>
         <th class="text-center">Nhập học</th>
         <th class="text-center">Trúng tuyển</th>
         <th class="text-center">Nghiệp đoàn</th>
@@ -18,13 +19,14 @@
         <tr>
             <td>@c.FullName</td>
             @*<td>
-                <a href="/Admin/Home/Edit/@c.StudentID">
-                    @c.FullName
-                </a>
-            </td>*@
+                    <a href="/Admin/Home/Edit/@c.StudentID">
+                        @c.FullName
+                    </a>
+                </td>*@
             <td class="text-right">@c.DateOfBirth.ToShortDateString()</td>
             <td>@c.Hometown</td>
             <td>@c.Passport</td>
+            <td>@c.Gender</td>
             <td class="text-right">@c.JoinDate.ToShortDateString()</td>
             <td class="text-right">@c.PassDate.ToShortDateString()</td>
             <td>@c.Syndication</td>

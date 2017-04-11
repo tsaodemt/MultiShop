@@ -9,6 +9,7 @@ public partial class Student
     [Required]
     public string FullName { get; set; }
 
+    [Required]
     public string Gender { get; set; }
 
     public DateTime DateOfBirth { get; set; }
