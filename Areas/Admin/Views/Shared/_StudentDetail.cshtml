@@ -1,0 +1,15 @@
+﻿<table class="table table-bordered">
+    <tr>
+        <th class="text-center">Ngày tháng</th>
+        <th class="text-center">Tình hình học tập</th>
+        <th class="text-center">Tình hình vi phạm</th>
+    </tr>
+    @foreach (StudentDetail c in ViewBag.DetailStudent)
+    {
+        <tr>
+            <td class="text-right">@c.Date.ToShortDateString()</td>
+            <td>@c.Study</td>
+            <td>@c.Violate</td>
+        </tr>
+    }
+</table>

@@ -17,16 +17,16 @@
     @foreach (Student c in ViewBag.Students)
     {
         <tr>
-            <td>@c.FullName</td>
-            @*<td>
-                    <a href="/Admin/Home/Edit/@c.StudentID">
-                        @c.FullName
-                    </a>
-                </td>*@
+            @*<td>@c.FullName</td>*@
+            <td>
+                <a href="/Admin/Home/Detail/@c.StudentID">
+                    @c.FullName
+                </a>
+            </td>
             <td class="text-right">@c.DateOfBirth.ToShortDateString()</td>
             <td>@c.Hometown</td>
             <td>@c.Passport</td>
-            <td>@c.Gender</td>
+            <td>@c.Blood</td>
             <td class="text-right">@c.JoinDate.ToShortDateString()</td>
             <td class="text-right">@c.PassDate.ToShortDateString()</td>
             <td>@c.Syndication</td>

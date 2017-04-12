@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Quản lý học viên";
     var linkAdd = "/Admin/Home/AddDetail/" + Model.StudentID.ToString();
+    var isBloobA = Model.Blood == "A" ? "checked" : "";
+    var isBloobB = Model.Blood == "B" ? "checked" : "";
+    var isBloobAB = Model.Blood == "AB" ? "checked" : "";
+    var isBloobO = Model.Blood == "O" ? "checked" : "";
 }
 
 <h2>Quản lý học viên</h2>
@@ -34,7 +38,7 @@
             <div class="form-group">
                 <label for="DateOfBirth" class="col-md-2 control-label">Ngày tháng năm sinh:</label>
                 <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.DateOfBirth, "{0:MM/dd/yyyy}", new { @class = "form-control" })
                 </div>
             </div>
 
@@ -54,22 +58,29 @@
 
             <div class="form-group">
                 <label for="Gender" class="col-md-2 control-label">Nhóm máu:</label>
-                <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                <div class="col-md-10">
+                    <input id="Blood" name="Blood" type="radio" value="A" @isBloobA>
+                    <label class="control-label">A&nbsp;&nbsp;</label>
+                    <input id="Blood" name="Blood" type="radio" value="B" @isBloobB>
+                    <label class="control-label">B&nbsp;&nbsp;</label>
+                    <input id="Blood" name="Blood" type="radio" value="O" @isBloobO>
+                    <label class="control-label">O&nbsp;&nbsp;</label>
+                    <input id="Blood" name="Blood" type="radio" value="AB" @isBloobAB>
+                    <label class="control-label">AB&nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="PassDate" class="col-md-2 control-label">Nhập học:</label>
                 <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.JoinDate, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.JoinDate, "{0:MM/dd/yyyy}",new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="PassDate" class="col-md-2 control-label">Trúng tuyển:</label>
                 <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.PassDate, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PassDate, "{0:MM/dd/yyyy}",new { @class = "form-control" })
                 </div>
             </div>
 
@@ -90,7 +101,7 @@
             <div class="form-group">
                 <label for="ExitDate" class="col-md-2 control-label">Dự kiến xuất cảnh:</label>
                 <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.ExitDate, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.ExitDate, "{0:MM/dd/yyyy}",new { @class = "form-control" })
                 </div>
             </div>
 
@@ -133,30 +144,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-
-        //$(function () {
-        //    $("#SupplierId").change(function () {
-        //        var id = $(this).val();
-        //        $("#SupplierId-Text").val(id);
-        //    });
-        //})
         $(function () {
             $(document).ready(function () {
                 $("#DateOfBirth").datepicker();
-                $("#NoteDate").datepicker();
-                CKEDITOR.replace("Note");
+                $("#PassDate").datepicker();
+                $("#ExitDate").datepicker();
+                $("#JoinDate").datepicker();
             });
         })
     </script>
-
-    @*<script>
-            $(function () {
-
-                $("ul.pager a").click(function () {
-                    eval($(this).attr("href"));
-                    fnLoadPage();
-                    return false;
-                });
-            });
-        </script>*@
 }

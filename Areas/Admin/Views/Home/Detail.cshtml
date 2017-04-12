@@ -1,0 +1,97 @@
+﻿@model ListStudentDetail
+@{
+    ViewBag.Title = "Quản lý học viên";
+    var linkAdd = "/Admin/Home/AddDetail/" + Model.StudentID.ToString();
+}
+
+<h2>Quản lý học viên</h2>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#add-tab" role="tab" data-toggle="tab">Detail</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+
+    <div class="tab-pane active" id="add-tab">
+        @using (Html.BeginForm("AddDetail", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <br />
+            <br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-lg-offset-1">
+                        <label for="FullName" class="col-md-6 control-label">@Model.Name</label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <button onclick="form.action = '@linkAdd'" class="btn btn-default">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control" })
+            </div>
+
+            <div id="list-detail"></div>
+            @*<div>
+                <ul class="pager">
+                    <li><a href="pageNo=0">First</a></li>
+                    <li><a href="pageNo-=1">Prev</a></li>
+                    <li><span id="pageNo"></span>/<span>@ViewBag.PageCount</span></li>
+                    <li><a href="pageNo+=1">Next</a></li>
+                    <li><a href="pageNo=pageCount-1">Last</a></li>
+                </ul>
+            </div>*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+                    <button onclick="form.action = '/Admin/Home/Index'" class="btn btn-info">Back</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(function () {
+            $(document).ready(function () {
+
+                pageNo = 0;
+                pageCount = @ViewBag.PageCount
+                LoadDetails();
+                //$("#DateOfBirth").datepicker();
+                //$("#NoteDate").datepicker();
+                //CKEDITOR.replace("Note");
+            });
+        })
+
+        function LoadDetails() {
+            if (pageNo < 0) {
+                pageNo = pageCount - 1;
+            }
+            if (pageNo >= pageCount) {
+                pageNo = 0;
+            }
+            $.ajax({
+                url: "/Admin/Home/GetDetaiPage",
+                data: {
+                    pageNo: pageNo,
+                    id: $("#StudentID").val()
+                },
+                success: function (response) {
+                    $("#list-detail").html(response);
+                }
+            });
+            $("#pageNo").html(pageNo + 1);
+        }
+    </script>
+
+}

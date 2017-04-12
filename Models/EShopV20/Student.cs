@@ -10,7 +10,7 @@ public partial class Student
     public string FullName { get; set; }
 
     [Required]
-    public string Gender { get; set; }
+    public string Blood { get; set; }
 
     public DateTime DateOfBirth { get; set; }
 

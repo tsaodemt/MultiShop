@@ -48,11 +48,24 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="Passport" class="col-md-2 control-label">Passport:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Passport, new { @class = "form-control" })
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="Gender" class="col-md-2 control-label">Nhóm máu:</label>
-                <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                <div class="col-md-10">
+                    @Html.RadioButton("Blood", "A")
+                    <label class="control-label">A&nbsp;&nbsp;</label>
+                    @Html.RadioButton("Blood", "B")
+                    <label class="control-label">B&nbsp;&nbsp;</label>
+                    @Html.RadioButton("Blood", "O")
+                    <label class="control-label">O&nbsp;&nbsp;</label>
+                    @Html.RadioButton("Blood", "AB")
+                    <label class="control-label">AB&nbsp;&nbsp;</label>
                 </div>
             </div>
 

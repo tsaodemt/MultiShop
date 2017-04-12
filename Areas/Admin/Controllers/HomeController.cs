@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MultiShop.Areas.Admin.Controllers
@@ -17,6 +16,14 @@ namespace MultiShop.Areas.Admin.Controllers
             ViewBag.Students = db.Students.ToList()
                 .Skip(PageSize * PageNo).Take(PageSize);
             return PartialView("_Student");
+        }
+
+        public ActionResult GetDetaiPage(string id, int PageNo = 0)
+        {
+            var studentId = Guid.Parse(id);
+            ViewBag.DetailStudent = db.StudentDetails.ToList().Where(i => i.StudentID == studentId)
+                .Skip(PageSize * PageNo).Take(PageSize);
+            return PartialView("_StudentDetail");
         }
 
         public ActionResult Index()
@@ -43,8 +50,24 @@ namespace MultiShop.Areas.Admin.Controllers
         public ActionResult AddDetail(string id)
         {
             var model = new StudentDetail();
+            model.StudentID = Guid.Parse(id);
+            model.Date = DateTime.Now;
 
             return View("AddDetail", model);
+        }
+
+        public ActionResult AddDetailReponse(StudentDetail model)
+        {
+            var detail = new StudentDetail
+            {
+                StudentID = model.StudentID,
+                Id = Guid.NewGuid()
+            };
+
+            db.StudentDetails.Add(detail);
+            db.SaveChanges();
+
+            return RedirectToAction(model.StudentID.ToString(), "Home/Detail");
         }
 
         public ActionResult Delete(string id)
@@ -69,11 +92,12 @@ namespace MultiShop.Areas.Admin.Controllers
         {
             var studentId = Guid.Parse(id);
             var model = db.Students.Find(studentId);
+            model.Blood = model.Blood.Trim();
 
             return View("Edit", model);
         }
 
-        public ActionResult EditDetail(string id)
+        public ActionResult Detail(string id)
         {
             var studentId = Guid.Parse(id);
             var student = db.Students.Find(studentId);
@@ -82,7 +106,9 @@ namespace MultiShop.Areas.Admin.Controllers
             model.StudentID = studentId;
             model.Details = new List<StudentDetail>();
 
-            return View("Edit", model);
+            ViewBag.PageCount = 10;
+
+            return View("Detail", model);
         }
 
         //[ValidateInput(false)]

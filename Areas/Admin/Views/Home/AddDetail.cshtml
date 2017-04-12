@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Quản lý học viên";
+    var linkBack = "/Admin/Home/Detail/" + Model.StudentID.ToString();
 }
 
 <h2>Quản lý học viên</h2>
@@ -9,130 +10,79 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#add-tab" role="tab" data-toggle="tab">Add</a></li>
-    @*<li class="active"><a href="#edit-tab" role="tab" data-toggle="tab">Edit</a></li>*@
-    @*<li><a href="#list-tab" role="tab" data-toggle="tab">List</a></li>*@
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
 
     <div class="tab-pane active" id="add-tab">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("AddDetailReponse", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "add-detail" }))
             {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
             <br />
             <br />
+
             <div class="form-group">
-                @*<label for="FullName" class="col-md-2 control-label">Họ và tên:</label>*@
-                <div class="row">
-                    <div class="col-md-4 col-lg-offset-1">
-                        @*@Html.LabelFor(m => m.Name, new { @class = "form-control" })*@
-                        <label for="FullName" class="col-md-6 control-label">@Model.Name</label>
-                        @*<button onclick="form.action = '/Admin/Home/Update'" class="btn btn-default">Add</button>*@
-                    </div>
-                    <div class="col-md-3">
-                        @*@Html.LabelFor(m => m.Name, new { @class = "form-control" })*@
-                        <button onclick="form.action = '/Admin/Home/Update'" class="btn btn-default">Add</button>
-                    </div>
+                <label for="Gender" class="col-md-2 control-label">Ngày tháng:</label>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { @class = "form-control" })
                 </div>
-                @*<div class="col-md-3">
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                    </div>*@
             </div>
 
             <div class="form-group">
-                <label for="Gender" class="col-md-4 control-label">Ngày tháng:</label>
-                <div class="col-md-1">
-                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+                <label for="Gender" class="col-md-2 control-label">Tình hình học tập:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Study, new { @class = "form-control" })
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Ngày tháng năm sinh:</label>
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    <label for="StudentCode" class="col-md-2 control-label">Mã khóa học:</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.StudentCode, new { @class = "form-control" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Ngày:</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.NoteDate, new { @class = "form-control" })
-                    </div>
+            <div class="form-group">
+                <label for="Gender" class="col-md-2 control-label">Tình hình vi phạm:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Violate, new { @class = "form-control" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Note, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-8">
-                        @Html.TextAreaFor(m => m.Note, new { @class = "form-control", rows = "10", cols = "55" })
-                    </div>
-                </div>
-
-                <div class="form-group hidden">
-                    <div class="col-md-8 hidden">
-                        @Html.TextAreaFor(m => m.StudentID, new { @class = "form-control", rows = "10", cols = "55" })
-                    </div>
-                </div>*@
+            <div class="form-group hidden">
+                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control" })
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-8">
 
-                    <button onclick="form.action = '/Admin/Home/AddDetail'" class="btn btn-default">Add</button>
-                    <button onclick="form.action = '/Admin/Home/Edit'" class="btn btn-info">Back</button>
+                    <button class="btn btn-add btn-default">Add</button>
+                    <button onclick="form.action = '@linkBack'" class="btn btn-info">Back</button>
                 </div>
             </div>
         }
     </div>
-
-    @*<div class="tab-pane" id="list-tab">
-            <div id="result"></div>
-            <div>
-                <ul class="pager">
-                    <li><a href="pageNo=0">First</a></li>
-                    <li><a href="pageNo-=1">Prev</a></li>
-                    <li><span id="pageNo"></span>/<span>@ViewBag.PageCount</span></li>
-                    <li><a href="pageNo+=1">Next</a></li>
-                    <li><a href="pageNo=pageCount-1">Last</a></li>
-                </ul>
-            </div>
-        </div>*@
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-
-        //$(function () {
-        //    $("#SupplierId").change(function () {
-        //        var id = $(this).val();
-        //        $("#SupplierId-Text").val(id);
-        //    });
-        //})
         $(function () {
             $(document).ready(function () {
-                $("#DateOfBirth").datepicker();
-                $("#NoteDate").datepicker();
-                CKEDITOR.replace("Note");
+                $("#Date").datepicker();
+                CKEDITOR.replace("Study");
+                CKEDITOR.replace("Violate");
+                $(".btn-add").on("click", function () {
+                    var form = $('#add-detail');
+                    var model = form.serializeObject();
+                    model.StudentID = $('#StudentID').val();
+
+                    $.ajax({
+                        url: "/Admin/Home/AddDetailReponse",
+                        data: {
+                            model: model
+                        },
+                        success: function (response) {
+                            //$("#result").html(response);
+                        }
+                    });
+                });
             });
         })
     </script>
-
-    @*<script>
-            $(function () {
-
-                $("ul.pager a").click(function () {
-                    eval($(this).attr("href"));
-                    fnLoadPage();
-                    return false;
-                });
-            });
-        </script>*@
 }
