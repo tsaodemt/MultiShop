@@ -56,18 +56,23 @@ namespace MultiShop.Areas.Admin.Controllers
             return View("AddDetail", model);
         }
 
+        [ValidateInput(false)]
         public ActionResult AddDetailReponse(StudentDetail model)
         {
             var detail = new StudentDetail
             {
                 StudentID = model.StudentID,
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                Violate = model.Violate,
+                Study = model.Study,
+                Date = model.Date,
+                Supervisor = model.Supervisor
             };
 
             db.StudentDetails.Add(detail);
             db.SaveChanges();
 
-            return RedirectToAction(model.StudentID.ToString(), "Home/Detail");
+            return new JsonResult { Data = model.StudentID };
         }
 
         public ActionResult Delete(string id)
@@ -88,6 +93,24 @@ namespace MultiShop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteDetail(string id)
+        {
+            try
+            {
+                var studentId = Guid.Parse(id);
+                var model = db.StudentDetails.Find(studentId);
+                db.StudentDetails.Remove(model);
+                db.SaveChanges();
+                //ModelState.AddModelError("", "Deleted");
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Error");
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Edit(string id)
         {
             var studentId = Guid.Parse(id);
@@ -95,6 +118,14 @@ namespace MultiShop.Areas.Admin.Controllers
             model.Blood = model.Blood.Trim();
 
             return View("Edit", model);
+        }
+
+        public ActionResult EditDetail(string id)
+        {
+            var studentId = Guid.Parse(id);
+            var model = db.StudentDetails.Find(studentId);
+
+            return View("EditDetail", model);
         }
 
         public ActionResult Detail(string id)

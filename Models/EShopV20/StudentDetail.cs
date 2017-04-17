@@ -9,4 +9,5 @@ public partial class StudentDetail
     public DateTime Date { get; set; }
     public string Study { get; set; }
     public string Violate { get; set; }
+    public string Supervisor { get; set; }
 }

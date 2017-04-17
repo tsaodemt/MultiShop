@@ -16,7 +16,7 @@
 <div class="tab-content">
 
     <div class="tab-pane active" id="add-tab">
-        @using (Html.BeginForm("AddDetailReponse", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "add-detail" }))
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "add-detail" }))
             {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -24,23 +24,30 @@
             <br />
 
             <div class="form-group">
-                <label for="Gender" class="col-md-2 control-label">Ngày tháng:</label>
+                <label for="Date" class="col-md-2 control-label">Ngày tháng:</label>
                 <div class="col-md-2">
                     @Html.TextBoxFor(m => m.Date, "{0:MM/dd/yyyy}", new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="Gender" class="col-md-2 control-label">Tình hình học tập:</label>
+                <label for="Study" class="col-md-2 control-label">Tình hình học tập:</label>
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Study, new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="Gender" class="col-md-2 control-label">Tình hình vi phạm:</label>
+                <label for="Violate" class="col-md-2 control-label">Tình hình vi phạm:</label>
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Violate, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Supervisor" class="col-md-2 control-label">Người đánh giá:</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.Supervisor, new { @class = "form-control" })
                 </div>
             </div>
 
@@ -68,17 +75,24 @@
                 CKEDITOR.replace("Study");
                 CKEDITOR.replace("Violate");
                 $(".btn-add").on("click", function () {
+                    $("form").submit(function (event) {
+                        event.preventDefault();
+                    });
                     var form = $('#add-detail');
                     var model = form.serializeObject();
+                    var study = CKEDITOR.instances.Study.getData();
+                    var violate = CKEDITOR.instances.Violate.getData();
                     model.StudentID = $('#StudentID').val();
-
+                    model.Supervisor = $('#Supervisor').val();
+                    model.Study = study;
+                    model.Violate = violate;
                     $.ajax({
                         url: "/Admin/Home/AddDetailReponse",
-                        data: {
-                            model: model
-                        },
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify({ model: model }),
                         success: function (response) {
-                            //$("#result").html(response);
+                            window.location.href = "/Admin/Home/Detail/" + response   
                         }
                     });
                 });

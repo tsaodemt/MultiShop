@@ -3,13 +3,27 @@
         <th class="text-center">Ngày tháng</th>
         <th class="text-center">Tình hình học tập</th>
         <th class="text-center">Tình hình vi phạm</th>
+        <th class="text-center">Người đánh giá</th>
+        <th></th>
+        <th></th>
     </tr>
     @foreach (StudentDetail c in ViewBag.DetailStudent)
     {
         <tr>
             <td class="text-right">@c.Date.ToShortDateString()</td>
-            <td>@c.Study</td>
-            <td>@c.Violate</td>
+            <td>@Html.Raw(c.Study)</td>
+            <td>@Html.Raw(c.Violate)</td>
+            <td>@Html.Raw(c.Supervisor)</td>
+            <td>
+                <a href="/Admin/Home/DeleteDetail/@c.Id">
+                    Delete
+                </a>
+            </td>
+            <td>
+                <a href="/Admin/Home/EditDetail/@c.Id">
+                    Edit
+                </a>
+            </td>
         </tr>
     }
 </table>
