@@ -1,7 +1,7 @@
 ﻿@model StudentDetail
 @{
     ViewBag.Title = "Quản lý học viên";
-    var linkBack = "/Admin/Home/Detail/" + Model.StudentID.ToString();
+    var linkBack = "/Admin/Home/DetailBack/" + Model.StudentID.ToString();
 }
 
 <h2>Quản lý học viên</h2>
@@ -17,7 +17,7 @@
 <div class="tab-content">
 
     <div class="tab-pane active" id="add-tab">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "update-detail" }))
             {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -52,13 +52,17 @@
             </div>
 
             <div class="form-group hidden">
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group hidden">
                 @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-8">
 
-                    <button class="btn btn-add btn-default">Update</button>
+                    <button onclick="form.action = '/Admin/Home/UpdateDetail'" class="btn btn-update btn-default">Update</button>
                     <button onclick="form.action = '@linkBack'" class="btn btn-info">Back</button>
                 </div>
             </div>
@@ -74,6 +78,31 @@
                 $("#Date").datepicker();
                 CKEDITOR.replace("Study");
                 CKEDITOR.replace("Violate");
+                CKEDITOR.instances.Study.setData($("#Study").val());
+                CKEDITOR.instances.Violate.setData($("#Violate").val());
+
+                $(".btn-update").on("click", function () {
+                    $("form").submit(function (event) {
+                        event.preventDefault();
+                    });
+                    var form = $('#update-detail');
+                    var model = form.serializeObject();
+                    var study = CKEDITOR.instances.Study.getData();
+                    var violate = CKEDITOR.instances.Violate.getData();
+                    model.StudentID = $('#StudentID').val();
+                    model.Supervisor = $('#Supervisor').val();
+                    model.Study = study;
+                    model.Violate = violate;
+                    $.ajax({
+                        url: "/Admin/Home/UpdateDetailReponse",
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify({ model: model }),
+                        success: function (response) {
+                            window.location.href = "/Admin/Home/Detail/" + response
+                        }
+                    });
+                });
             });
         })
     </script>

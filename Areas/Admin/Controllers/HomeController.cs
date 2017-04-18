@@ -75,6 +75,15 @@ namespace MultiShop.Areas.Admin.Controllers
             return new JsonResult { Data = model.StudentID };
         }
 
+        [ValidateInput(false)]
+        public ActionResult UpdateDetailReponse(StudentDetail model)
+        {
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return new JsonResult { Data = model.StudentID };
+        }
+
         public ActionResult Delete(string id)
         {
             try
@@ -124,6 +133,7 @@ namespace MultiShop.Areas.Admin.Controllers
         {
             var studentId = Guid.Parse(id);
             var model = db.StudentDetails.Find(studentId);
+            model.Supervisor = model.Supervisor.Trim();
 
             return View("EditDetail", model);
         }
@@ -142,12 +152,42 @@ namespace MultiShop.Areas.Admin.Controllers
             return View("Detail", model);
         }
 
+        [ValidateInput(false)]
+        public ActionResult DetailBack(StudentDetail detail)
+        {
+            var student = db.Students.Find(detail.StudentID);
+            var model = new ListStudentDetail();
+            model.Name = student.FullName;
+            model.StudentID = detail.StudentID;
+            model.Details = new List<StudentDetail>();
+
+            ViewBag.PageCount = 10;
+
+            return View("Detail", model);
+        }
+
         //[ValidateInput(false)]
         public ActionResult Update(Student model)
         {
             try
             {
                 //model.Gender = "M";
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch
+            {
+                //ModelState.AddModelError("", "Error");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [ValidateInput(false)]
+        public ActionResult UpdateDetail(StudentDetail model)
+        {
+            try
+            {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
             }
