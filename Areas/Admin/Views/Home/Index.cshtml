@@ -4,7 +4,10 @@
 }
 
 <h2>Quản lý học viên</h2>
-
+<div class="row">
+    <input type="text" class="col-lg-offset-4 btn-search-text" />
+    <input type="button" class="btn-info btn-search" value="Search" />
+</div>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#list-tab" role="tab" data-toggle="tab">List</a></li>
@@ -109,7 +112,7 @@
                 <div class="col-md-2">
                     <label>
                         @Html.CheckBoxFor(m => m.Status, new { @class = "form-control" }) Japan
-                     </label>
+                    </label>
                 </div>
             </div>
 
@@ -145,7 +148,23 @@
                 $("#JoinDate").datepicker();
                 $("#PassDate").datepicker();
                 $("#ExitDate").datepicker();
+                $('.btn-search').focus();
                 //CKEDITOR.replace("Note");
+
+                $('.btn-search').on('click', function () {
+                    $("#result").empty();
+
+                    $.ajax({
+                        url: "/Admin/Home/Search",
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify({ name: $('.btn-search-text').val() }),
+                        success: function (response) {
+                            $("#result").html(response);
+                            $("#pageNo").html(1);
+                        }
+                    });
+                })
 
                 //$('.reset').on('click', function () {
                 //    $(this).closest('form').find("input[type=text]").val("");

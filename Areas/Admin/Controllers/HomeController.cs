@@ -198,5 +198,14 @@ namespace MultiShop.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Search(string name)
+        {
+            ViewBag.Students = db.Students.ToList().Where(i => i.FullName.ToLower().Contains(name.Trim()))
+                .Take(PageSize);
+            ViewBag.PageCount = 1;
+
+            return PartialView("_Student");
+        }
     }
 }
