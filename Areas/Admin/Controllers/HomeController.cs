@@ -199,13 +199,31 @@ namespace MultiShop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Search(string name)
+        public ActionResult Search(Student model)
         {
-            ViewBag.Students = db.Students.ToList().Where(i => i.FullName.ToLower().Contains(name.Trim()))
-                .Take(PageSize);
-            ViewBag.PageCount = 1;
+            model.FullName = model.FullName ?? string.Empty;
+            model.Syndication = model.Syndication ?? string.Empty;
 
-            return PartialView("_Student");
+            ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
+                i.FullName.ToLower().Contains(model.FullName.Trim()) ||
+                i.FullName.ToLower().Contains(model.Syndication.Trim())
+                );
+
+            if(!string.IsNullOrEmpty(model.FullName) && string.IsNullOrEmpty(model.Syndication))
+            {
+                ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
+                    i.FullName.ToLower().Contains(model.FullName.Trim())
+                    );
+            }
+
+            if (string.IsNullOrEmpty(model.FullName) && !string.IsNullOrEmpty(model.Syndication))
+            {
+                ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
+                    i.Syndication.ToLower().Contains(model.Syndication.Trim())
+                    );
+            }
+
+            return PartialView("_StudentSearch");
         }
     }
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<fieldset>
+@*<fieldset>
     <legend>Role Management</legend>
     @using (Html.BeginForm()){
         @Html.DropDownList("OldRoleName")
@@ -12,7 +12,7 @@
         @Html.TextBox("NewRoleName")
         <input type="submit" value="Add" onclick="form.action = '/Admin/Master/AddRole'" />
     }
-</fieldset>
+</fieldset>*@
 <hr />
 
 <fieldset>
@@ -25,13 +25,19 @@
         <div>Password</div>
         @Html.TextBox("Password")
         
-        <div>Roles</div>
-        foreach(var r in ViewBag.Roles){
+        @*<div>Roles</div>*@
+            @*foreach(var r in ViewBag.Roles){
             <label>
-                <input type="checkbox" name="Roles" value="@r.Name" />
-                @r.Name
+                Passwords must be at least 6 characters.
             </label>
-        }
+        }*@
+
+        <label>
+            Passwords must be at least 6 characters.
+        </label>
+        <label>
+            <input type="checkbox" name="Roles" checked value="user" class="hidden" />
+        </label>
         <hr />
         <input type="submit" value="Add" onclick="form.action = '/Admin/Master/AddUser'" />
     }
@@ -63,6 +69,9 @@
             </tr>
         }
     </table>
+
+    <hr />
+    <button class="btn btn-info user-manage-back">Back</button>
 </fieldset>
 
 @section scripts{
@@ -79,6 +88,12 @@
                     alert(response);
                 }
             });
+        });
+
+        $(document).ready(function () {
+            $('.user-manage-back').on('click', function () {
+                window.location.href = "/Admin/Home";
+            })
         });
     });
     </script>

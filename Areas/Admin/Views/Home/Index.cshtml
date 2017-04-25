@@ -4,18 +4,59 @@
 }
 
 <h2>Quản lý học viên</h2>
-<div class="row">
-    <input type="text" class="col-lg-offset-4 btn-search-text" />
-    <input type="button" class="btn-info btn-search" value="Search" />
+@if (User.IsInRole("admin"))
+{
+<div class="row col-lg-offset-10">
+    <button class="btn btn-default user-manage">User management</button>
 </div>
+}
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#list-tab" role="tab" data-toggle="tab">List</a></li>
     <li><a href="#add-tab" role="tab" data-toggle="tab">Add</a></li>
+    <li><a href="#search-tab" role="tab" data-toggle="tab">Search</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
+    <div class="tab-pane" id="search-tab">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <br />
+            <br />
+            <div class="form-group">
+                <label class="col-md-2 control-label">Họ và tên:</label>
+                <div class="col-md-3">
+                    <input type="text" class="col-lg-offset-2 btn-name-text" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="FullName" class="col-md-2 control-label">Nghiệp đoàn:</label>
+                <div class="col-md-3">
+                    <input type="text" class="col-lg-offset-2 btn-nghiep-text" />
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                <label for="FullName" class="col-md-2 control-label">Status:</label>
+                <div class="col-md-1 col-lg-offset-1">
+                    <input class="form-control" data-val="true" id="search-status" name="Status" type="checkbox"> Japan
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-8">
+                    <input type="button" class="btn-info btn-search" value="Search" />
+                </div>
+            </div>
+
+            <div id="result-search"></div>
+        }
+    </div>
+
     <div class="tab-pane" id="add-tab">
         @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
@@ -152,18 +193,26 @@
                 //CKEDITOR.replace("Note");
 
                 $('.btn-search').on('click', function () {
-                    $("#result").empty();
+                    //$("#result").empty();
 
                     $.ajax({
                         url: "/Admin/Home/Search",
                         contentType: 'application/json',
                         type: 'POST',
-                        data: JSON.stringify({ name: $('.btn-search-text').val() }),
+                        data: JSON.stringify({
+                            FullName: $('.btn-name-text').val(),
+                            Syndication: $('.btn-nghiep-text').val(),
+                        }),
                         success: function (response) {
-                            $("#result").html(response);
-                            $("#pageNo").html(1);
+                            $("#result-search").html(response);
+                            //fnLoadPage();
+                            //$("#pageNo").html(1);
                         }
                     });
+                })
+
+                $('.user-manage').on('click', function () {
+                    window.location.href = "/Admin/Master";
                 })
 
                 //$('.reset').on('click', function () {
