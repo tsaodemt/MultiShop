@@ -40,3 +40,62 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.inputUsername-login {
+	background: url(/Content/img/banner/icon_username.png) 20px 11px no-repeat, linear-gradient(to bottom, #f7f7f8 0%,#ffffff 100%);
+	border-radius: 28px;
+	border: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 -1px 0 rgba(0,0,0,0.05) inset;
+	transition: all 0.2s linear;
+	font-size: 16px;
+	color: #676a6c;
+	position: relative;
+	height: 50px;
+	padding-left: 60px;
+	padding-right: 30px;
+}
+
+.inputPassword-login {
+	background: url(/Content/img/banner/icon_password.png) 20px 11px no-repeat, linear-gradient(to bottom, #f7f7f8 0%,#ffffff 100%);
+	border-radius: 28px;
+	border: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 -1px 0 rgba(0,0,0,0.05) inset;
+	transition: all 0.2s linear;
+	font-size: 16px;
+	color: #676a6c;
+	position: relative;
+	height: 50px;
+	padding-left: 60px;
+	padding-right: 30px;
+}
+
+.btn-login {
+  border-radius: 28px;
+  border: none;
+  font-size: 16px;
+  color: #FFFFFF;
+  position: relative;
+  height: 50px;
+}
+
+.login-bg-img {
+	background: url(/Content/img/banner/bg_login.jpg) no-repeat;
+	width: 100%;
+	height:382px;
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: 0px 0px;
+	background-color: #d6e7b3;
+	margin-top:20px;
+}
+
+.btn-login:hover{
+	background-color:#f4531e;
+}
+
+.middle-box {
+  max-width: 400px;
+  z-index: 100;
+  margin: 0 auto;
+  padding-top: 40px;
+}

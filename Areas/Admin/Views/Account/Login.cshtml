@@ -1,17 +1,65 @@
-﻿
+﻿@model MultiShop.Models.LoginViewModel
 @{
     ViewBag.Title = "Login";
 }
+<div class="row login-bg-img">
+    <br>
+    <br>
+    <br>
+    <div class="middle-box">
+        <div id="divMessage" style="color:red; text-align:left; margin-left:30px;"></div>
+        <br>
 
-<h2>Login</h2>
+        @Html.TextBoxFor(u => u.UserName, new { @class = "form-control inputUsername-login", placeholder = "User ID", type = "UserName" })
+        <br>
+        @Html.PasswordFor(u => u.Password, new { @class = "form-control inputPassword-login", placeholder = "Password", type = "Password" })
+        <br>
+        <input type="button" value="Log In" id="btnLogin" class="btn-login btn-primary block full-width m-b" />
+    </div>
+</div>
 
-@using (Html.BeginForm()){
-    <div>User Name</div>
-    @Html.TextBox("UserName")
-    
-    <div>Password</div>
-    @Html.TextBox("Password")
 
-    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
-    <input type="submit" value="Login" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                
+
+                $("#btnLogin").on("click", function () {
+
+                    var user = $('#UserName').val();
+                    var pass = $('#Password').val();
+                    if (user == '') {
+                        $('#divMessage').html('User ID cannot empty!').show();
+                        return;
+                    }
+
+                    if (pass == '') {
+                        $('#divMessage').html('Password cannot empty!').show();
+                        return;
+                    }
+
+                    $.ajax({
+                        url: "/Admin/Account/Login",
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            UserName: $('#UserName').val(),
+                            Password: $('#Password').val(),
+                        }),
+                        success: function (response) {
+                            if (response.ReturnStatus == "success") {
+                                window.location.href = response.Data;
+                                $('#divMessage').html('').hide();
+                            }
+                            else {
+                                $('#divMessage').html('Invalid User ID / Password').show();
+                            }
+                        }
+                    });
+                });
+            });
+        })
+    </script>
 }

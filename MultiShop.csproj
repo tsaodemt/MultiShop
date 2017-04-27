@@ -181,6 +181,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Models\AjaxJsonReturnModel.cs" />
     <Compile Include="Controllers\SecurityActionFilterAttribute.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -249,6 +250,9 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\banner\banner.png" />
     <Content Include="Content\img\banner\banner.swf" />
+    <Content Include="Content\img\banner\bg_login.jpg" />
+    <Content Include="Content\img\banner\icon_password.png" />
+    <Content Include="Content\img\banner\icon_username.png" />
     <Content Include="Content\img\banner\nenmoi_01.png" />
     <Content Include="Content\img\Uploads\1.jpg" />
     <Content Include="Content\img\Uploads\1250.jpg" />

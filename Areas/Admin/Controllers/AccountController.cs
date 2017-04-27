@@ -10,6 +10,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MultiShop.Areas.Admin.Models;
 
 namespace MultiShop.Areas.Admin.Controllers
 {
@@ -32,23 +33,24 @@ namespace MultiShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(String UserName, String Password, string returnUrl)
+        public async Task<JsonResult> Login(LoginViewModel model)
         {
-            var user = await UserManager.FindAsync(UserName, Password);
+            AjaxJsonReturnModel result = new AjaxJsonReturnModel
+            {
+                ReturnStatus = "error"
+            };
+
+            var user = await UserManager.FindAsync(model.UserName, model.Password);
             if (user != null)
             {
                 await SignInAsync(user, false);
-                if (returnUrl == "")
-                {
-                    returnUrl = "/Admin/Home";
-                }
-                return Redirect(returnUrl);
+                result.ReturnStatus = "success";
+                result.Data = "/Admin/Home";
+
+                return Json(result);
             }
-            else
-            {
-                ModelState.AddModelError("", "Invalid username or password.");
-            }
-            return View();
+
+            return Json(result);
         }
 
         private IAuthenticationManager AuthenticationManager
