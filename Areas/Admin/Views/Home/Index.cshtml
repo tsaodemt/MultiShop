@@ -24,8 +24,10 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            <br />
-            <br />
+            <br>
+            
+            <div class="msg-search alert alert-danger col-md-11"></div>
+            <br>
             <div class="form-group">
                 <label class="col-md-2 control-label">Họ và tên:</label>
                 <div class="col-md-3">
@@ -191,9 +193,19 @@
                 $("#ExitDate").datepicker();
                 $('.btn-search').focus();
                 //CKEDITOR.replace("Note");
-
+                $(".msg-search").hide();
                 $('.btn-search').on('click', function () {
                     //$("#result").empty();
+                    //$(".msg-search").hide();
+                    var name = $(".btn-name-text").val();
+                    var nameSyndication = $(".btn-nghiep-text").val();
+                    if (name == '' && nameSyndication == '')
+                    {
+                        $(".msg-search").text('Xin vui lòng nhập [Họ và tên]').show();
+                        return;
+                    }
+
+                    $(".msg-search").hide();
 
                     $.ajax({
                         url: "/Admin/Home/Search",

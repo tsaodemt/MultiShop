@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 
 namespace MultiShop.Areas.Admin.Controllers
@@ -204,26 +205,36 @@ namespace MultiShop.Areas.Admin.Controllers
             model.FullName = model.FullName ?? string.Empty;
             model.Syndication = model.Syndication ?? string.Empty;
 
+            var nameNotAccent = RemoveAccents(model.FullName);
+            var nameSyndicationNotAccent = RemoveAccents(model.Syndication);
             ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
-                i.FullName.ToLower().Contains(model.FullName.Trim()) ||
-                i.FullName.ToLower().Contains(model.Syndication.Trim())
-                );
+                    RemoveAccents(i.FullName.ToLower()).Contains(nameNotAccent.ToLower())
+                    );
 
-            if(!string.IsNullOrEmpty(model.FullName) && string.IsNullOrEmpty(model.Syndication))
+            if(!string.IsNullOrEmpty(model.Syndication) && string.IsNullOrEmpty(model.FullName))
             {
-                ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
-                    i.FullName.ToLower().Contains(model.FullName.Trim())
+                ViewBag.StudentsSearch = db.Students.ToList().Where(i => !string.IsNullOrEmpty(i.Syndication) &&
+                    RemoveAccents(i.Syndication.ToLower()).Contains(nameSyndicationNotAccent.ToLower())
                     );
             }
 
-            if (string.IsNullOrEmpty(model.FullName) && !string.IsNullOrEmpty(model.Syndication))
+            if (!string.IsNullOrEmpty(model.Syndication) && !string.IsNullOrEmpty(model.FullName))
             {
-                ViewBag.StudentsSearch = db.Students.ToList().Where(i =>
-                    i.Syndication.ToLower().Contains(model.Syndication.Trim())
+                ViewBag.StudentsSearch = db.Students.ToList().Where(i => !string.IsNullOrEmpty(i.Syndication) &&
+                    RemoveAccents(i.Syndication.ToLower()).Contains(nameSyndicationNotAccent.ToLower()) && 
+                    RemoveAccents(i.FullName.ToLower()).Contains(nameNotAccent.ToLower())
                     );
             }
 
             return PartialView("_StudentSearch");
+        }
+
+        private static string RemoveAccents(string s)
+        {
+            Encoding destEncoding = Encoding.GetEncoding("iso-8859-8");
+
+            return destEncoding.GetString(
+                Encoding.Convert(Encoding.UTF8, destEncoding, Encoding.UTF8.GetBytes(string.Copy(s))));
         }
     }
 }

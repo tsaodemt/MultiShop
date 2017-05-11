@@ -248,7 +248,6 @@
     <Content Include="Content\css\camera.css" />
     <Content Include="Content\css\nn-style.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\img\banner\banner.png" />
     <Content Include="Content\img\banner\banner.swf" />
     <Content Include="Content\img\banner\bg_login.jpg" />
     <Content Include="Content\img\banner\icon_password.png" />
