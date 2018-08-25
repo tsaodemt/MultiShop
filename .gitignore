@@ -36,3 +36,7 @@ _ReSharper*/
 Content/img
 packages/
 uploads/
+/.vs/MultiShop/v15/Server/sqlite3/db.lock
+/.vs/MultiShop/v15/Server/sqlite3/storage.ide
+/.vs/MultiShop/v15/Server/sqlite3/storage.ide-shm
+/.vs/MultiShop/v15/Server/sqlite3/storage.ide-wal
